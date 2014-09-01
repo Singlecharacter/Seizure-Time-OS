@@ -6,6 +6,8 @@ SeizureTimeCore::SeizureTimeCore(QWidget *parent) :
     ui(new Ui::SeizureTimeCore)
 {
     ui->setupUi(this);
+    menu = new MainMenu();
+    menu->show();
 }
 
 SeizureTimeCore::~SeizureTimeCore()

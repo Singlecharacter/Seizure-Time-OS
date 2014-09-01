@@ -13,8 +13,17 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        seizuretimecore.cpp
+        seizuretimecore.cpp \
+    mainmenu.cpp \
+    quitconfirmdialog.cpp
 
-HEADERS  += seizuretimecore.h
+HEADERS  += seizuretimecore.h \
+    mainmenu.h \
+    mainmenu.h \
+    quitconfirmdialog.h
 
-FORMS    += seizuretimecore.ui
+FORMS    += seizuretimecore.ui \
+    mainmenu.ui
+
+RESOURCES += \
+    images.qrc

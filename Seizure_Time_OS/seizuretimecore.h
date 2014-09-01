@@ -1,6 +1,8 @@
 #ifndef SEIZURETIMECORE_H
 #define SEIZURETIMECORE_H
 
+#include "mainmenu.h"
+
 #include <QMainWindow>
 
 namespace Ui {
@@ -17,6 +19,8 @@ public:
 
 private:
     Ui::SeizureTimeCore *ui;
+
+    MainMenu *menu;
 };
 
 #endif // SEIZURETIMECORE_H
