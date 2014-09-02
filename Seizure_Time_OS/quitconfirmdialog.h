@@ -10,6 +10,7 @@ class QuitConfirmDialog : public QDialog
     Q_OBJECT
 public:
     explicit QuitConfirmDialog(QWidget *parent = 0);
+    ~QuitConfirmDialog();
 
 signals:
 

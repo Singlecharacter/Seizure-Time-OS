@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainmenu.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.0
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -26,7 +26,8 @@ public:
     QPushButton *quitButton;
     QLabel *welcomeLabel;
     QPushButton *helpButton;
-    QLabel *label;
+    QLabel *versionLabel;
+    QPushButton *fileListButton;
 
     void setupUi(QWidget *MainMenu)
     {
@@ -56,14 +57,13 @@ public:
         sizePolicy.setHeightForWidth(helpButton->sizePolicy().hasHeightForWidth());
         helpButton->setSizePolicy(sizePolicy);
         helpButton->setToolTipDuration(-1);
-        QIcon icon;
-        icon.addFile(QStringLiteral("//conor-pc/Users/Conor/Desktop/Question_Mark_Icon_-_Blue_Box.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        helpButton->setIcon(icon);
-        helpButton->setIconSize(QSize(32, 32));
         helpButton->setFlat(false);
-        label = new QLabel(MainMenu);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 240, 93, 13));
+        versionLabel = new QLabel(MainMenu);
+        versionLabel->setObjectName(QStringLiteral("versionLabel"));
+        versionLabel->setGeometry(QRect(150, 50, 63, 13));
+        fileListButton = new QPushButton(MainMenu);
+        fileListButton->setObjectName(QStringLiteral("fileListButton"));
+        fileListButton->setGeometry(QRect(20, 260, 75, 23));
 
         retranslateUi(MainMenu);
 
@@ -78,8 +78,9 @@ public:
 #ifndef QT_NO_TOOLTIP
         helpButton->setToolTip(QApplication::translate("MainMenu", "Help", 0));
 #endif // QT_NO_TOOLTIP
-        helpButton->setText(QString());
-        label->setText(QApplication::translate("MainMenu", "The current time is:", 0));
+        helpButton->setText(QApplication::translate("MainMenu", "?", 0));
+        versionLabel->setText(QApplication::translate("MainMenu", "Version 0.0.0", 0));
+        fileListButton->setText(QApplication::translate("MainMenu", "File List", 0));
     } // retranslateUi
 
 };

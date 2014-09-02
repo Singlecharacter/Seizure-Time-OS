@@ -3,8 +3,11 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QLabel>
+#include <QDir>
 
 #include "quitconfirmdialog.h"
+#include "directorylistdialog.h"
 
 namespace Ui {
 class MainMenu;
@@ -21,14 +24,20 @@ public:
 private slots:
 
     void quitButtonClicked();
+    void fileButtonClicked();
 
 private:
     Ui::MainMenu *ui;
 
     QuitConfirmDialog *quitDialog;
+    DirectoryListDialog *dirDialog;
+
+    QString mainDir;
 
     //Pointers to ui elements
     QPushButton *quitButton;
+    QPushButton *fileListButton;
+    QLabel *versionLabel;
 };
 
 #endif // MAINMENU_H

@@ -15,15 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         seizuretimecore.cpp \
     mainmenu.cpp \
-    quitconfirmdialog.cpp
+    quitconfirmdialog.cpp \
+    directorylistdialog.cpp
 
 HEADERS  += seizuretimecore.h \
     mainmenu.h \
     mainmenu.h \
-    quitconfirmdialog.h
+    quitconfirmdialog.h \
+    directorylistdialog.h
 
 FORMS    += seizuretimecore.ui \
     mainmenu.ui
 
-RESOURCES += \
-    images.qrc
+RESOURCES +=
