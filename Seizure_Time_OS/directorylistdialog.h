@@ -5,6 +5,8 @@
 #include <QString>
 #include <QDir>
 #include <QTextEdit>
+#include <QPushButton>
+#include <QStringList>
 
 class DirectoryListDialog : public QDialog
 {
@@ -15,8 +17,17 @@ public:
 
 signals:
 
-public slots:
+private slots:
 
+    void okClicked();
+
+private:
+
+    void readDirectory();
+
+    QDir *dir;
+    QPushButton *okButton;
+    QTextEdit *listEdit;
 };
 
 #endif // DIRECTORYLISTDIALOG_H

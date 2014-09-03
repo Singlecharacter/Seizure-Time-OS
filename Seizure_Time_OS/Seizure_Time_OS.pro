@@ -16,13 +16,15 @@ SOURCES += main.cpp\
         seizuretimecore.cpp \
     mainmenu.cpp \
     quitconfirmdialog.cpp \
-    directorylistdialog.cpp
+    directorylistdialog.cpp \
+    datedialog.cpp
 
 HEADERS  += seizuretimecore.h \
     mainmenu.h \
     mainmenu.h \
     quitconfirmdialog.h \
-    directorylistdialog.h
+    directorylistdialog.h \
+    datedialog.h
 
 FORMS    += seizuretimecore.ui \
     mainmenu.ui

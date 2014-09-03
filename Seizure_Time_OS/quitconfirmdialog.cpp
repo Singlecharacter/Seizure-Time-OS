@@ -5,7 +5,8 @@ QuitConfirmDialog::QuitConfirmDialog(QWidget *parent) :
 {
     setFixedSize(200,100);
     setModal(true);
-    //setWindowFlags(Qt::WindowTitleHint);
+    setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
+
     yesButton = new QPushButton(this);
     noButton = new QPushButton(this);
     confirmLabel = new QLabel(this);
