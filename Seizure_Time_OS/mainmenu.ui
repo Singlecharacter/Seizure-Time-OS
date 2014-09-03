@@ -119,6 +119,19 @@
     <string>File List</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="dateButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>220</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Date</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -1,9 +1,9 @@
 #include "datedialog.h"
 
-DateDialog::DateDialog(QWidget *parent) :
+DateDialog::DateDialog(QWidget *parent, QDate date) :
     QDialog(parent)
 {
-    setFixedSize(200,300);
+    setFixedSize(200,100);
     setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
 
     okButton = new QPushButton(this);
@@ -11,11 +11,18 @@ DateDialog::DateDialog(QWidget *parent) :
     dateEdit = new QDateEdit(this);
     dateLabel = new QLabel(this);
 
-    QDate date = QDate().currentDate();
-    int day,month,year;
-    date.getDate(&year,&month,&day);
     dateEdit->setDate(date);
-    QString dayString = "";
+    dateEdit->setGeometry(width()/2-dateEdit->width()/2,32,dateEdit->width(),16);
+
+    changeDate(date);
+
+    okButton->setGeometry(3*width()/4-75/2,69,75,23);
+    setButton->setGeometry(width()/4-75/2,69,75,23);
+    okButton->setText("Ok");
+    setButton->setText("Set date");
+
+    connect(okButton,SIGNAL(clicked()),this,SLOT(okClicked()));
+    connect(setButton,SIGNAL(clicked()),this,SLOT(setClicked()));
 
     show();
 }
@@ -32,5 +39,20 @@ void DateDialog::okClicked()
 
 void DateDialog::setClicked()
 {
+    changeDate(dateEdit->date());
+}
 
+void DateDialog::changeDate(QDate newDate)
+{
+    int day,month,year;
+    newDate.getDate(&year,&month,&day);
+    QString dayString = "";
+    dayString.setNum(day);
+    QString monthString = "";
+    monthString.setNum(month);
+    QString yearString = "";
+    yearString.setNum(year);
+    dateLabel->setText("The date is: " + monthString + "/" + dayString + "/" + yearString);
+    dateLabel->adjustSize();
+    dateLabel->setGeometry(width()/2-dateLabel->width()/2,16,dateLabel->width(),dateLabel->height());
 }

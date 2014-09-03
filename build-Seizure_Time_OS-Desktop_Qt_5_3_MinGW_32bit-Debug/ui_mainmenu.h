@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainmenu.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.3.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -28,6 +28,7 @@ public:
     QPushButton *helpButton;
     QLabel *versionLabel;
     QPushButton *fileListButton;
+    QPushButton *dateButton;
 
     void setupUi(QWidget *MainMenu)
     {
@@ -64,6 +65,9 @@ public:
         fileListButton = new QPushButton(MainMenu);
         fileListButton->setObjectName(QStringLiteral("fileListButton"));
         fileListButton->setGeometry(QRect(20, 260, 75, 23));
+        dateButton = new QPushButton(MainMenu);
+        dateButton->setObjectName(QStringLiteral("dateButton"));
+        dateButton->setGeometry(QRect(20, 220, 75, 23));
 
         retranslateUi(MainMenu);
 
@@ -81,6 +85,7 @@ public:
         helpButton->setText(QApplication::translate("MainMenu", "?", 0));
         versionLabel->setText(QApplication::translate("MainMenu", "Version 0.0.0", 0));
         fileListButton->setText(QApplication::translate("MainMenu", "File List", 0));
+        dateButton->setText(QApplication::translate("MainMenu", "Date", 0));
     } // retranslateUi
 
 };

@@ -5,9 +5,11 @@ INPUT(
 ./release\quitconfirmdialog.o
 ./release\directorylistdialog.o
 ./release\datedialog.o
+./release\helpdialog.o
 ./release\moc_seizuretimecore.o
 ./release\moc_mainmenu.o
 ./release\moc_quitconfirmdialog.o
 ./release\moc_directorylistdialog.o
 ./release\moc_datedialog.o
+./release\moc_helpdialog.o
 );

@@ -5,9 +5,11 @@ INPUT(
 ./debug\quitconfirmdialog.o
 ./debug\directorylistdialog.o
 ./debug\datedialog.o
+./debug\helpdialog.o
 ./debug\moc_seizuretimecore.o
 ./debug\moc_mainmenu.o
 ./debug\moc_quitconfirmdialog.o
 ./debug\moc_directorylistdialog.o
 ./debug\moc_datedialog.o
+./debug\moc_helpdialog.o
 );
