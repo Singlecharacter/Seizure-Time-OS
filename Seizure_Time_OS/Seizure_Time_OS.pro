@@ -18,7 +18,10 @@ SOURCES += main.cpp\
     quitconfirmdialog.cpp \
     directorylistdialog.cpp \
     datedialog.cpp \
-    helpdialog.cpp
+    helpdialog.cpp \
+    pcbcontrol.cpp \
+    pcb.cpp \
+    pcbqueue.cpp
 
 HEADERS  += seizuretimecore.h \
     mainmenu.h \
@@ -26,7 +29,10 @@ HEADERS  += seizuretimecore.h \
     quitconfirmdialog.h \
     directorylistdialog.h \
     datedialog.h \
-    helpdialog.h
+    helpdialog.h \
+    pcbcontrol.h \
+    pcb.h \
+    pcbqueue.h
 
 FORMS    += seizuretimecore.ui \
     mainmenu.ui

@@ -6,6 +6,9 @@ INPUT(
 ./debug\directorylistdialog.o
 ./debug\datedialog.o
 ./debug\helpdialog.o
+./debug\pcbcontrol.o
+./debug\pcb.o
+./debug\pcbqueue.o
 ./debug\moc_seizuretimecore.o
 ./debug\moc_mainmenu.o
 ./debug\moc_quitconfirmdialog.o

@@ -6,6 +6,9 @@ INPUT(
 ./release\directorylistdialog.o
 ./release\datedialog.o
 ./release\helpdialog.o
+./release\pcbcontrol.o
+./release\pcb.o
+./release\pcbqueue.o
 ./release\moc_seizuretimecore.o
 ./release\moc_mainmenu.o
 ./release\moc_quitconfirmdialog.o
