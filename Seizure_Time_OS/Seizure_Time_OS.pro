@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     helpdialog.cpp \
     pcbcontrol.cpp \
     pcb.cpp \
-    pcbqueue.cpp
+    pcbqueue.cpp \
+    pcbmanagerdialog.cpp
 
 HEADERS  += seizuretimecore.h \
     mainmenu.h \
@@ -32,7 +33,8 @@ HEADERS  += seizuretimecore.h \
     helpdialog.h \
     pcbcontrol.h \
     pcb.h \
-    pcbqueue.h
+    pcbqueue.h \
+    pcbmanagerdialog.h
 
 FORMS    += seizuretimecore.ui \
     mainmenu.ui

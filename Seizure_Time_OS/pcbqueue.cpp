@@ -43,12 +43,20 @@ void PCBQueue::push(PCB* pcb)
 {
     PCBNode *temp = new PCBNode;
     temp->containedPCB = pcb;
-    temp->next = head;
-    head = temp;
-
-    if(tail == NULL)
+    temp->next = NULL;
+    PCBNode *traverse = head;
+    if(traverse == NULL)
     {
-        tail = head;
+        head = temp;
+        tail = temp;
+    }
+    else
+    {
+        while(traverse->next != NULL)
+        {
+            traverse = traverse->next;
+        }
+        traverse->next = temp;
     }
 }
 
@@ -61,5 +69,40 @@ PCB *PCBQueue::pop()
         tail = NULL;
     }
 
-    return temp->containedPCB;
+    PCB *tempPCB = temp->containedPCB;
+    delete temp;
+    return tempPCB;
+}
+
+void PCBQueue::remove(QString findName)
+{
+    PCBNode *traverse = head;
+    while(traverse != NULL)
+    {
+        if(traverse->next == NULL)
+        {
+            break;
+        }
+        else
+        {
+            if(traverse->next->containedPCB->getName() == findName)
+            {
+                traverse->next = traverse->next->next;
+            }
+        }
+    }
+}
+
+PCB *PCBQueue::find(QString findName)
+{
+    PCBNode *traverse = head;
+    while(traverse != NULL)
+    {
+        if(traverse->containedPCB->getName() == findName)
+        {
+            return traverse->containedPCB;
+        }
+        traverse = traverse->next;
+    }
+    return NULL;
 }
