@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>PCB Manager</string>
   </property>
   <widget class="QGroupBox" name="createBox">
    <property name="geometry">
@@ -31,7 +31,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -127,7 +127,7 @@
     <string>Show PCBs</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -230,7 +230,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -300,22 +300,9 @@
     </item>
    </layout>
   </widget>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
   <zorder>createBox</zorder>
-  <zorder>editNameEdit</zorder>
-  <zorder>editNameLabel</zorder>
-  <zorder>deleteButton</zorder>
-  <zorder>blockButton</zorder>
-  <zorder>unblockButton</zorder>
-  <zorder>suspendButton</zorder>
-  <zorder>resumeButton</zorder>
-  <zorder>changePriorityButton</zorder>
-  <zorder>horizontalSpacer</zorder>
-  <zorder>horizontalSpacer_2</zorder>
-  <zorder>unblockButton</zorder>
-  <zorder>editPriorityLabel</zorder>
-  <zorder>horizontalSpacer_3</zorder>
-  <zorder>horizontalSpacer_4</zorder>
-  <zorder>editPriorityBox</zorder>
   <zorder>showButton</zorder>
  </widget>
  <resources/>
