@@ -25,7 +25,7 @@ void PCBControl::freePCB(PCB *PCBToDelete)
 
 PCB *PCBControl::setupPCB(QString name, int priority, ProcessClass myClass)
 {
-    if(findPCB(name) == NULL || priority < -127 || priority > 129)
+    if(findPCB(name) != NULL || priority < -127 || priority > 129)
     {
         return NULL;
     }
@@ -35,6 +35,7 @@ PCB *PCBControl::setupPCB(QString name, int priority, ProcessClass myClass)
         newPCB->setName(name);
         newPCB->setPriority(priority);
         newPCB->setClass(myClass);
+        insertPCB(newPCB);
 
         return newPCB;
     }
@@ -44,10 +45,10 @@ PCB *PCBControl::findPCB(QString name)
 {
     PCB *foundPCB = NULL;
     foundPCB = readyQueue.find(name);
-    if(foundPCB == NULL)
+    /*if(foundPCB == NULL)
     {
         foundPCB = blockedQueue.find(name);
-    }
+    }*/
 
     return foundPCB;
 }

@@ -9,6 +9,8 @@ PCBManagerDialog::PCBManagerDialog(QWidget *parent) :
 
     ui->setupUi(this);
 
+    setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint);
+
     createNameEdit = ui->createNameEdit;
     editNameEdit = ui->editNameEdit;
     classCombo = ui->classCombo;
@@ -28,6 +30,9 @@ PCBManagerDialog::PCBManagerDialog(QWidget *parent) :
     classCombo->addItem("System");
 
     connect(createButton,SIGNAL(clicked()),this,SLOT(createClicked()));
+    connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteClicked()));
+
+
 
     show();
 }
@@ -43,13 +48,18 @@ void PCBManagerDialog::createClicked()
     {
         if(classCombo->currentIndex() == 0) //Application
         {
-            Globals().globalPCBControl.setupPCB(createNameEdit->text(),createPriorityBox->value(),Application);
+            if(Globals().globalPCBControl.setupPCB(createNameEdit->text(),createPriorityBox->value(),Application) != NULL)
+            {
+                createTextDialog("PCB created succesfully.");
+            }
         }
-        else
+        else //System
         {
-            Globals().globalPCBControl.setupPCB(createNameEdit->text(),createPriorityBox->value(),Application);
+            if(Globals().globalPCBControl.setupPCB(createNameEdit->text(),createPriorityBox->value(),System) != NULL)
+            {
+                createTextDialog("PCB created successfully.");
+            }
         }
-        createTextDialog("PCB created successfully.");
     }
     else
     {
@@ -59,7 +69,17 @@ void PCBManagerDialog::createClicked()
 
 void PCBManagerDialog::deleteClicked()
 {
-
+    PCB *temp = Globals().globalPCBControl.findPCB(editNameEdit->text());
+    if(temp != NULL)
+    {
+        Globals().globalPCBControl.removePCB(temp);
+        Globals().globalPCBControl.freePCB(temp);
+        createTextDialog("PCB deleted successfully.");
+    }
+    else
+    {
+        createTextDialog("Error deleting PCB.");
+    }
 }
 
 void PCBManagerDialog::blockClicked()
