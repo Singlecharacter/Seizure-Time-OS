@@ -6,14 +6,14 @@
 #include <QLabel>
 #include <QTextEdit>
 
-class HelpDialog : public QDialog
+class MultiPageDialog : public QDialog
 {
     Q_OBJECT
 
 public:
 
-    explicit HelpDialog(QWidget *parent = 0);
-    ~HelpDialog();
+    explicit MultiPageDialog(QWidget *parent = 0,QStringList pages = QStringList());
+    ~MultiPageDialog();
 
 signals:
 
@@ -27,9 +27,9 @@ private slots:
 
 private:
 
-    QStringList commandLibrary;
+    QStringList pageLibrary;
 
-    int commandIndex;
+    int pageIndex;
 
     QPushButton *doneButton;
     QPushButton *leftButton;
@@ -38,7 +38,6 @@ private:
     QTextEdit *helpDisplay;
 
     QLabel *pageLabel;
-
 
 };
 

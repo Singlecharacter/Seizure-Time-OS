@@ -53,6 +53,16 @@ PCB *PCBControl::findPCB(QString name)
     return foundPCB;
 }
 
+PCB *PCBControl::atReadyQueue(int index)
+{
+    return readyQueue.at(index);
+}
+
+PCB *PCBControl::atBlockedQueue(int index)
+{
+    return blockedQueue.at(index);
+}
+
 void PCBControl::insertPCB(PCB *PCBToInsert)
 {
     if(PCBToInsert->getRunState() == Ready)
@@ -69,4 +79,14 @@ void PCBControl::removePCB(PCB *PCBToRemove)
 {
     readyQueue.remove(PCBToRemove->getName());
     blockedQueue.remove(PCBToRemove->getName());
+}
+
+int PCBControl::readyQueueSize()
+{
+    return readyQueue.getNodeCount();
+}
+
+int PCBControl::blockedQueueSize()
+{
+    return blockedQueue.getNodeCount();
 }

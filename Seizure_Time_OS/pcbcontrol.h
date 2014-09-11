@@ -20,6 +20,12 @@ public:
     void insertPCB(PCB *PCBToInsert = NULL);
     void removePCB(PCB *PCBToRemove = NULL);
 
+    PCB *atReadyQueue(int index = 0);
+    PCB *atBlockedQueue(int index = 0);
+
+    int readyQueueSize();
+    int blockedQueueSize();
+
 private:
 
     PCBQueue readyQueue;

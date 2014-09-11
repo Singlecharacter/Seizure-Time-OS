@@ -5,11 +5,13 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QDir>
+#include <QStringList>
+#include <QString>
 
 #include "quitconfirmdialog.h"
 #include "directorylistdialog.h"
 #include "datedialog.h"
-#include "helpdialog.h"
+#include "multipagedialog.h"
 #include "pcbmanagerdialog.h"
 #include "globals.h"
 
@@ -42,10 +44,11 @@ private:
     QuitConfirmDialog *quitDialog;
     DirectoryListDialog *dirDialog;
     DateDialog *dateDialog;
-    HelpDialog *helpDialog;
+    MultiPageDialog *helpDialog;
     PCBManagerDialog *PCBDialog;
 
     QString mainDir;
+    QStringList helpLibrary;
 
     //Pointers to ui elements
     QPushButton *quitButton;

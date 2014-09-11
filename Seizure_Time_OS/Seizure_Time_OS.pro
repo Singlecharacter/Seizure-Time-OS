@@ -18,13 +18,13 @@ SOURCES += main.cpp\
     quitconfirmdialog.cpp \
     directorylistdialog.cpp \
     datedialog.cpp \
-    helpdialog.cpp \
     pcbcontrol.cpp \
     pcb.cpp \
     pcbqueue.cpp \
     pcbmanagerdialog.cpp \
     globals.cpp \
-    textdialog.cpp
+    textdialog.cpp \
+    multipagedialog.cpp
 
 HEADERS  += seizuretimecore.h \
     mainmenu.h \
@@ -32,13 +32,13 @@ HEADERS  += seizuretimecore.h \
     quitconfirmdialog.h \
     directorylistdialog.h \
     datedialog.h \
-    helpdialog.h \
     pcbcontrol.h \
     pcb.h \
     pcbqueue.h \
     pcbmanagerdialog.h \
     globals.h \
-    textdialog.h
+    textdialog.h \
+    multipagedialog.h
 
 FORMS    += seizuretimecore.ui \
     mainmenu.ui \

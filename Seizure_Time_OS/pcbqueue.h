@@ -22,6 +22,7 @@ public:
 
     void push(PCB* pcb = NULL);
     PCB *pop();
+    PCB *at(int index = 0);
     void remove(QString findName = "");
 
     PCB *find(QString findName = "");

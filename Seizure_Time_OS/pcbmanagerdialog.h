@@ -5,12 +5,14 @@
 #include "pcbcontrol.h"
 #include "textdialog.h"
 #include "globals.h"
+#include "multipagedialog.h"
 
 #include <QDialog>
 #include <QSpinBox>
 #include <QComboBox>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QStringList>
 
 namespace Ui {
 class PCBManagerDialog;
@@ -49,6 +51,9 @@ private:
 
     //Message dialog
     TextDialog *textDisplay;
+
+    //PCB display dialog
+    MultiPageDialog *showDialog;
 
 private slots:
 

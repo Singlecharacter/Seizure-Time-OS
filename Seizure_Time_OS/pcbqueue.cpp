@@ -74,9 +74,33 @@ PCB *PCBQueue::pop()
     return tempPCB;
 }
 
+PCB *PCBQueue::at(int index)
+{
+    PCBNode *traverse = head;
+    int currentIndex = 0;
+    while(traverse != NULL)
+    {
+        if(currentIndex == index)
+        {
+            return traverse->containedPCB;
+        }
+        currentIndex++;
+        traverse = traverse->next;
+    }
+}
+
 void PCBQueue::remove(QString findName)
 {
     PCBNode *traverse = head;
+    if(head != NULL)
+    {
+        if(head->containedPCB->getName() == findName)
+        {
+            head = head->next;
+            delete traverse;
+        }
+    }
+
     while(traverse != NULL)
     {
         if(traverse->next == NULL)
@@ -87,7 +111,9 @@ void PCBQueue::remove(QString findName)
         {
             if(traverse->next->containedPCB->getName() == findName)
             {
+                PCBNode *deleteTemp = traverse->next;
                 traverse->next = traverse->next->next;
+                delete deleteTemp;
             }
         }
     }

@@ -18,6 +18,11 @@ MainMenu::MainMenu(QWidget *parent) :
     QDir temp;
     temp.mkdir(mainDir);
 
+    //Setup help library
+    helpLibrary.clear();
+    helpLibrary.push_back("Command: File List\r\n\r\nThe File List button opens a dialog window containing a scrollable text area that contains a list of all files and directories in the operating system's base directory, which by default is (User directory)/Seizure_Time_OS. Files are listed with extensions, while directories appear without any extensions.");
+    helpLibrary.push_back("Command: Date\r\n\r\nThe Date button opens a dialog window containing a text display of the operating system's current date and a field for editing that date.");
+    helpLibrary.push_back("Command: Quit\r\n\r\nThe Quit button opens a dialog window that asks if you're sure you want to quit and waits for your response.");
 
     //Assign ui pointers
     quitButton = ui->quitButton;
@@ -27,7 +32,7 @@ MainMenu::MainMenu(QWidget *parent) :
     helpButton = ui->helpButton;
     PCBButton = ui->PCBButton;
 
-    versionLabel->setText("Version 0.1.0");
+    versionLabel->setText("Version 0.2.0");
     versionLabel->adjustSize();
     versionLabel->setGeometry(width()/2-(versionLabel->width()/2),50,versionLabel->width(),versionLabel->height());
 
@@ -81,7 +86,7 @@ void MainMenu::dateButtonClicked()
 void MainMenu::helpButtonClicked()
 {
     delete helpDialog;
-    helpDialog = new HelpDialog();
+    helpDialog = new MultiPageDialog(this,helpLibrary);
 }
 
 void MainMenu::PCBClicked()
