@@ -12,6 +12,7 @@
 class DateDialog : public QDialog
 {
     Q_OBJECT
+
 public:
 
     explicit DateDialog(QWidget *parent = 0,QDate date = Globals().systemDate);

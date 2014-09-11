@@ -150,108 +150,116 @@ void PCBManagerDialog::showClicked()
     pages.clear();
     QString page = "";
     QString pageAddition = "";
-    for(int i = 0; i < Globals().globalPCBControl.readyQueueSize();i++)
+
+    if(Globals().globalPCBControl.readyQueueSize() > 0 || Globals().globalPCBControl.blockedQueueSize() > 0)
     {
-        PCB *temp = Globals().globalPCBControl.atReadyQueue(i);
-        page = temp->getName();
-        page += "\r\n\r\n";
-        page += "Class: ";
-        if(temp->getClass() == Application)
+        for(int i = 0; i < Globals().globalPCBControl.readyQueueSize();i++)
         {
-            page += "Application";
-        }
-        else
-        {
-            page += "System";
-        }
-        page += "\r\n";
-        page += "Priority: ";
-        pageAddition.setNum(temp->getPriority());
-        page += pageAddition;
-        page += "\r\n";
-        page += "State: ";
-        if(temp->getRunState() == Ready)
-        {
-            page += "Ready";
-        }
-        else if(temp->getRunState() == Running)
-        {
-            page += "Running";
-        }
-        else
-        {
-            page += "Blocked";
-        }
-        page += "\r\n";
-        page += "Suspended: ";
-        if(temp->getSuspendState() == Suspended)
-        {
-            page += "Yes";
-        }
-        else
-        {
-            page += "No";
-        }
-        page += "\r\n";
-        page += "Memory: ";
-        pageAddition.setNum(temp->getRequiredMemory());
-        page += pageAddition;
+            PCB *temp = Globals().globalPCBControl.atReadyQueue(i);
+            page = temp->getName();
+            page += "\r\n\r\n";
+            page += "Class: ";
+            if(temp->getClass() == Application)
+            {
+                page += "Application";
+            }
+            else
+            {
+                page += "System";
+            }
+            page += "\r\n";
+            page += "Priority: ";
+            pageAddition.setNum(temp->getPriority());
+            page += pageAddition;
+            page += "\r\n";
+            page += "State: ";
+            if(temp->getRunState() == Ready)
+            {
+                page += "Ready";
+            }
+            else if(temp->getRunState() == Running)
+            {
+                page += "Running";
+            }
+            else
+            {
+                page += "Blocked";
+            }
+            page += "\r\n";
+            page += "Suspended: ";
+            if(temp->getSuspendState() == Suspended)
+            {
+                page += "Yes";
+            }
+            else
+            {
+                page += "No";
+            }
+            page += "\r\n";
+            page += "Memory: ";
+            pageAddition.setNum(temp->getRequiredMemory());
+            page += pageAddition;
 
-        pages.push_back(page);
+            pages.push_back(page);
+        }
+
+        for(int i = 0; i < Globals().globalPCBControl.blockedQueueSize();i++)
+        {
+            PCB *temp = Globals().globalPCBControl.atBlockedQueue(i);
+            page = temp->getName();
+            page += "\r\n\r\n";
+            page += "Class: ";
+            if(temp->getClass() == Application)
+            {
+                page += "Application";
+            }
+            else
+            {
+                page += "System";
+            }
+            page += "\r\n";
+            page += "Priority: ";
+            pageAddition.setNum(temp->getPriority());
+            page += pageAddition;
+            page += "\r\n";
+            page += "State: ";
+            if(temp->getRunState() == Ready)
+            {
+                page += "Ready";
+            }
+            else if(temp->getRunState() == Running)
+            {
+                page += "Running";
+            }
+            else
+            {
+                page += "Blocked";
+            }
+            page += "\r\n";
+            page += "Suspended: ";
+            if(temp->getSuspendState() == Suspended)
+            {
+                page += "Yes";
+            }
+            else
+            {
+                page += "No";
+            }
+            page += "\r\n";
+            page += "Memory: ";
+            pageAddition.setNum(temp->getRequiredMemory());
+            page += pageAddition;
+
+            pages.push_back(page);
+        }
+
+        delete showDialog;
+        showDialog = new MultiPageDialog(this,pages);
     }
-
-    for(int i = 0; i < Globals().globalPCBControl.blockedQueueSize();i++)
+    else
     {
-        PCB *temp = Globals().globalPCBControl.atBlockedQueue(i);
-        page = temp->getName();
-        page += "\r\n\r\n";
-        page += "Class: ";
-        if(temp->getClass() == Application)
-        {
-            page += "Application";
-        }
-        else
-        {
-            page += "System";
-        }
-        page += "\r\n";
-        page += "Priority: ";
-        pageAddition.setNum(temp->getPriority());
-        page += pageAddition;
-        page += "\r\n";
-        page += "State: ";
-        if(temp->getRunState() == Ready)
-        {
-            page += "Ready";
-        }
-        else if(temp->getRunState() == Running)
-        {
-            page += "Running";
-        }
-        else
-        {
-            page += "Blocked";
-        }
-        page += "\r\n";
-        page += "Suspended: ";
-        if(temp->getSuspendState() == Suspended)
-        {
-            page += "Yes";
-        }
-        else
-        {
-            page += "No";
-        }
-        page += "\r\n";
-        page += "Memory: ";
-        pageAddition.setNum(temp->getRequiredMemory());
-        page += pageAddition;
-
-        pages.push_back(page);
+        createTextDialog("No PCBs to show!");
     }
-
-    delete showDialog;
-    showDialog = new MultiPageDialog(this,pages);
 }
 
 void PCBManagerDialog::changePriorityClicked()

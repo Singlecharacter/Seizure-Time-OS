@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'pcbmanagerdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.3.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -32,7 +32,7 @@ class Ui_PCBManagerDialog
 {
 public:
     QGroupBox *createBox;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
@@ -46,7 +46,7 @@ public:
     QSpinBox *createPriorityBox;
     QPushButton *createButton;
     QPushButton *showButton;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_4;
     QLabel *editNameLabel;
@@ -62,7 +62,7 @@ public:
     QHBoxLayout *horizontalLayout_7;
     QPushButton *suspendButton;
     QPushButton *resumeButton;
-    QWidget *widget2;
+    QWidget *layoutWidget2;
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_8;
     QLabel *editPriorityLabel;
@@ -85,22 +85,22 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(createBox->sizePolicy().hasHeightForWidth());
         createBox->setSizePolicy(sizePolicy);
-        widget = new QWidget(createBox);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 176, 111));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(createBox);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 176, 111));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        createNameLabel = new QLabel(widget);
+        createNameLabel = new QLabel(layoutWidget);
         createNameLabel->setObjectName(QStringLiteral("createNameLabel"));
 
         horizontalLayout->addWidget(createNameLabel);
 
-        createNameEdit = new QLineEdit(widget);
+        createNameEdit = new QLineEdit(layoutWidget);
         createNameEdit->setObjectName(QStringLiteral("createNameEdit"));
 
         horizontalLayout->addWidget(createNameEdit);
@@ -110,12 +110,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        classLabel = new QLabel(widget);
+        classLabel = new QLabel(layoutWidget);
         classLabel->setObjectName(QStringLiteral("classLabel"));
 
         horizontalLayout_2->addWidget(classLabel);
 
-        classCombo = new QComboBox(widget);
+        classCombo = new QComboBox(layoutWidget);
         classCombo->setObjectName(QStringLiteral("classCombo"));
         classCombo->setEditable(false);
 
@@ -126,12 +126,12 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        createPriorityLabel = new QLabel(widget);
+        createPriorityLabel = new QLabel(layoutWidget);
         createPriorityLabel->setObjectName(QStringLiteral("createPriorityLabel"));
 
         horizontalLayout_3->addWidget(createPriorityLabel);
 
-        createPriorityBox = new QSpinBox(widget);
+        createPriorityBox = new QSpinBox(layoutWidget);
         createPriorityBox->setObjectName(QStringLiteral("createPriorityBox"));
         createPriorityBox->setMinimum(-127);
         createPriorityBox->setMaximum(128);
@@ -144,7 +144,7 @@ public:
 
         verticalLayout_2->addLayout(verticalLayout);
 
-        createButton = new QPushButton(widget);
+        createButton = new QPushButton(layoutWidget);
         createButton->setObjectName(QStringLiteral("createButton"));
 
         verticalLayout_2->addWidget(createButton);
@@ -152,20 +152,20 @@ public:
         showButton = new QPushButton(PCBManagerDialog);
         showButton->setObjectName(QStringLiteral("showButton"));
         showButton->setGeometry(QRect(270, 30, 75, 23));
-        widget1 = new QWidget(PCBManagerDialog);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(20, 150, 174, 119));
-        verticalLayout_4 = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(PCBManagerDialog);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(20, 150, 174, 119));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget1);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        editNameLabel = new QLabel(widget1);
+        editNameLabel = new QLabel(layoutWidget1);
         editNameLabel->setObjectName(QStringLiteral("editNameLabel"));
 
         horizontalLayout_4->addWidget(editNameLabel);
 
-        editNameEdit = new QLineEdit(widget1);
+        editNameEdit = new QLineEdit(layoutWidget1);
         editNameEdit->setObjectName(QStringLiteral("editNameEdit"));
 
         horizontalLayout_4->addWidget(editNameEdit);
@@ -181,7 +181,7 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer);
 
-        deleteButton = new QPushButton(widget1);
+        deleteButton = new QPushButton(layoutWidget1);
         deleteButton->setObjectName(QStringLiteral("deleteButton"));
 
         horizontalLayout_5->addWidget(deleteButton);
@@ -195,12 +195,12 @@ public:
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        blockButton = new QPushButton(widget1);
+        blockButton = new QPushButton(layoutWidget1);
         blockButton->setObjectName(QStringLiteral("blockButton"));
 
         horizontalLayout_6->addWidget(blockButton);
 
-        unblockButton = new QPushButton(widget1);
+        unblockButton = new QPushButton(layoutWidget1);
         unblockButton->setObjectName(QStringLiteral("unblockButton"));
 
         horizontalLayout_6->addWidget(unblockButton);
@@ -210,12 +210,12 @@ public:
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        suspendButton = new QPushButton(widget1);
+        suspendButton = new QPushButton(layoutWidget1);
         suspendButton->setObjectName(QStringLiteral("suspendButton"));
 
         horizontalLayout_7->addWidget(suspendButton);
 
-        resumeButton = new QPushButton(widget1);
+        resumeButton = new QPushButton(layoutWidget1);
         resumeButton->setObjectName(QStringLiteral("resumeButton"));
 
         horizontalLayout_7->addWidget(resumeButton);
@@ -226,20 +226,20 @@ public:
 
         verticalLayout_4->addLayout(verticalLayout_3);
 
-        widget2 = new QWidget(PCBManagerDialog);
-        widget2->setObjectName(QStringLiteral("widget2"));
-        widget2->setGeometry(QRect(240, 150, 127, 55));
-        verticalLayout_5 = new QVBoxLayout(widget2);
+        layoutWidget2 = new QWidget(PCBManagerDialog);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(240, 150, 127, 55));
+        verticalLayout_5 = new QVBoxLayout(layoutWidget2);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        editPriorityLabel = new QLabel(widget2);
+        editPriorityLabel = new QLabel(layoutWidget2);
         editPriorityLabel->setObjectName(QStringLiteral("editPriorityLabel"));
 
         horizontalLayout_8->addWidget(editPriorityLabel);
 
-        editPriorityBox = new QSpinBox(widget2);
+        editPriorityBox = new QSpinBox(layoutWidget2);
         editPriorityBox->setObjectName(QStringLiteral("editPriorityBox"));
         editPriorityBox->setMinimum(-127);
         editPriorityBox->setMaximum(128);
@@ -255,7 +255,7 @@ public:
 
         horizontalLayout_9->addItem(horizontalSpacer_3);
 
-        changePriorityButton = new QPushButton(widget2);
+        changePriorityButton = new QPushButton(layoutWidget2);
         changePriorityButton->setObjectName(QStringLiteral("changePriorityButton"));
 
         horizontalLayout_9->addWidget(changePriorityButton);
@@ -267,18 +267,9 @@ public:
 
         verticalLayout_5->addLayout(horizontalLayout_9);
 
+        layoutWidget->raise();
+        layoutWidget->raise();
         createBox->raise();
-        editNameEdit->raise();
-        editNameLabel->raise();
-        deleteButton->raise();
-        blockButton->raise();
-        unblockButton->raise();
-        suspendButton->raise();
-        resumeButton->raise();
-        changePriorityButton->raise();
-        unblockButton->raise();
-        editPriorityLabel->raise();
-        editPriorityBox->raise();
         showButton->raise();
 
         retranslateUi(PCBManagerDialog);
@@ -291,7 +282,7 @@ public:
 
     void retranslateUi(QDialog *PCBManagerDialog)
     {
-        PCBManagerDialog->setWindowTitle(QApplication::translate("PCBManagerDialog", "Dialog", 0));
+        PCBManagerDialog->setWindowTitle(QApplication::translate("PCBManagerDialog", "PCB Manager", 0));
         createBox->setTitle(QString());
         createNameLabel->setText(QApplication::translate("PCBManagerDialog", "Name:", 0));
         classLabel->setText(QApplication::translate("PCBManagerDialog", "Class:", 0));
