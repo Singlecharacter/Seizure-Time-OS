@@ -2,14 +2,12 @@
 
 PCBControl::PCBControl()
 {
-    readyQueue = new PCBQueue();
-    blockedQueue = new PCBQueue();
+
 }
 
 PCBControl::~PCBControl()
 {
-    delete readyQueue;
-    delete blockedQueue;
+
 }
 
 PCB *PCBControl::allocatePCB()
@@ -56,7 +54,7 @@ PCB *PCBControl::findPCB(QString name)
 
 void PCBControl::insertPCB(PCB *PCBToInsert)
 {
-    if(PCBToInsert->getSuspendState() == Ready)
+    if(PCBToInsert->getRunState() == Ready)
     {
         readyQueue.push(PCBToInsert);
     }
@@ -68,5 +66,6 @@ void PCBControl::insertPCB(PCB *PCBToInsert)
 
 void PCBControl::removePCB(PCB *PCBToRemove)
 {
-    remove(PCBToRemove->getName());
+    readyQueue.remove(PCBToRemove->getName());
+    blockedQueue.remove(PCBToRemove->getName());
 }

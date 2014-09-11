@@ -7,12 +7,14 @@
 #include <QLabel>
 #include <QDate>
 
+#include "globals.h"
+
 class DateDialog : public QDialog
 {
     Q_OBJECT
 public:
 
-    explicit DateDialog(QWidget *parent = 0,QDate date = QDate().currentDate());
+    explicit DateDialog(QWidget *parent = 0,QDate date = Globals().systemDate);
     ~DateDialog();
 
     void changeDate(QDate newDate = QDate().currentDate());

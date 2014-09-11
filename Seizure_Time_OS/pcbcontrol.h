@@ -15,7 +15,7 @@ public:
 
     PCB *allocatePCB();
     void freePCB(PCB *PCBToDelete = NULL);
-    void setupPCB(QString name = "",int priority = 0,ProcessClass myClass = Application);
+    PCB *setupPCB(QString name = "",int priority = 0,ProcessClass myClass = Application);
     PCB *findPCB(QString name = "");
     void insertPCB(PCB *PCBToInsert = NULL);
     void removePCB(PCB *PCBToRemove = NULL);

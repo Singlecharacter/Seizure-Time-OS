@@ -55,4 +55,6 @@ void DateDialog::changeDate(QDate newDate)
     dateLabel->setText("The date is: " + monthString + "/" + dayString + "/" + yearString);
     dateLabel->adjustSize();
     dateLabel->setGeometry(width()/2-dateLabel->width()/2,16,dateLabel->width(),dateLabel->height());
+
+    Globals().systemDate = newDate;
 }

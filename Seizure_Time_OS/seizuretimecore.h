@@ -2,8 +2,10 @@
 #define SEIZURETIMECORE_H
 
 #include "mainmenu.h"
+#include "globals.h"
 
 #include <QMainWindow>
+#include <QDate>
 
 namespace Ui {
 class SeizureTimeCore;

@@ -9,10 +9,15 @@ INPUT(
 ./release\pcbcontrol.o
 ./release\pcb.o
 ./release\pcbqueue.o
+./release\pcbmanagerdialog.o
+./release\globals.o
+./release\textdialog.o
 ./release\moc_seizuretimecore.o
 ./release\moc_mainmenu.o
 ./release\moc_quitconfirmdialog.o
 ./release\moc_directorylistdialog.o
 ./release\moc_datedialog.o
 ./release\moc_helpdialog.o
+./release\moc_pcbmanagerdialog.o
+./release\moc_textdialog.o
 );

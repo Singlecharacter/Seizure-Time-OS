@@ -10,12 +10,14 @@ MainMenu::MainMenu(QWidget *parent) :
 
     quitDialog = NULL;
     dirDialog = NULL;
+    dateDialog = NULL;
+    helpDialog = NULL;
+    PCBDialog = NULL;
 
     mainDir = QDir().homePath() + "/Seizure_Time_OS";
     QDir temp;
     temp.mkdir(mainDir);
 
-    myDate = QDate().currentDate();
 
     //Assign ui pointers
     quitButton = ui->quitButton;
@@ -23,6 +25,7 @@ MainMenu::MainMenu(QWidget *parent) :
     fileListButton = ui->fileListButton;
     dateButton = ui->dateButton;
     helpButton = ui->helpButton;
+    PCBButton = ui->PCBButton;
 
     versionLabel->setText("Version 0.1.0");
     versionLabel->adjustSize();
@@ -42,6 +45,9 @@ MainMenu::MainMenu(QWidget *parent) :
 
     //Create a help dialog when the help button is clicked
     connect(helpButton,SIGNAL(clicked()),this,SLOT(helpButtonClicked()));
+
+    //Create a PCB manager when PCB button is clicked
+    connect(PCBButton,SIGNAL(clicked()),this,SLOT(PCBClicked()));
 }
 
 MainMenu::~MainMenu()
@@ -78,7 +84,8 @@ void MainMenu::helpButtonClicked()
     helpDialog = new HelpDialog();
 }
 
-void MainMenu::setMyDate(QDate newDate)
+void MainMenu::PCBClicked()
 {
-    myDate = newDate;
+    delete PCBDialog;
+    PCBDialog = new PCBManagerDialog();
 }

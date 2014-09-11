@@ -10,6 +10,8 @@
 #include "directorylistdialog.h"
 #include "datedialog.h"
 #include "helpdialog.h"
+#include "pcbmanagerdialog.h"
+#include "globals.h"
 
 namespace Ui {
 class MainMenu;
@@ -24,14 +26,13 @@ public:
     explicit MainMenu(QWidget *parent = 0);
     ~MainMenu();
 
-    void setMyDate(QDate newDate);
-
 private slots:
 
     void quitButtonClicked();
     void fileButtonClicked();
     void dateButtonClicked();
     void helpButtonClicked();
+    void PCBClicked();
 
 private:
 
@@ -42,16 +43,16 @@ private:
     DirectoryListDialog *dirDialog;
     DateDialog *dateDialog;
     HelpDialog *helpDialog;
+    PCBManagerDialog *PCBDialog;
 
     QString mainDir;
-
-    QDate myDate;
 
     //Pointers to ui elements
     QPushButton *quitButton;
     QPushButton *fileListButton;
     QPushButton *dateButton;
     QPushButton *helpButton;
+    QPushButton *PCBButton;
     QLabel *versionLabel;
 };
 

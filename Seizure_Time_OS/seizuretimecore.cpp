@@ -6,8 +6,13 @@ SeizureTimeCore::SeizureTimeCore(QWidget *parent) :
     ui(new Ui::SeizureTimeCore)
 {
     ui->setupUi(this);
+
+    //Create and show main menu
     menu = new MainMenu();
     menu->show();
+
+    //Initialize globals
+    Globals().systemDate = QDate().currentDate();
 }
 
 SeizureTimeCore::~SeizureTimeCore()
