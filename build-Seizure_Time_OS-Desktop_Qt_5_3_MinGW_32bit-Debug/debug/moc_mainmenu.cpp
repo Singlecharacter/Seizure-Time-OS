@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainmenu.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainmenu.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.3.0. It"
+#error "This file was generated using the moc from 5.3.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainMenu_t {
     QByteArrayData data[7];
-    char stringdata[93];
+    char stringdata[69];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,16 +30,15 @@ struct qt_meta_stringdata_MainMenu_t {
 static const qt_meta_stringdata_MainMenu_t qt_meta_stringdata_MainMenu = {
     {
 QT_MOC_LITERAL(0, 0, 8),
-QT_MOC_LITERAL(1, 9, 17),
-QT_MOC_LITERAL(2, 27, 0),
-QT_MOC_LITERAL(3, 28, 17),
-QT_MOC_LITERAL(4, 46, 17),
-QT_MOC_LITERAL(5, 64, 17),
-QT_MOC_LITERAL(6, 82, 10)
+QT_MOC_LITERAL(1, 9, 11),
+QT_MOC_LITERAL(2, 21, 0),
+QT_MOC_LITERAL(3, 22, 11),
+QT_MOC_LITERAL(4, 34, 11),
+QT_MOC_LITERAL(5, 46, 11),
+QT_MOC_LITERAL(6, 58, 10)
     },
-    "MainMenu\0quitButtonClicked\0\0"
-    "fileButtonClicked\0dateButtonClicked\0"
-    "helpButtonClicked\0PCBClicked"
+    "MainMenu\0quitClicked\0\0fileClicked\0"
+    "dateClicked\0helpClicked\0PCBClicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -78,10 +77,10 @@ void MainMenu::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainMenu *_t = static_cast<MainMenu *>(_o);
         switch (_id) {
-        case 0: _t->quitButtonClicked(); break;
-        case 1: _t->fileButtonClicked(); break;
-        case 2: _t->dateButtonClicked(); break;
-        case 3: _t->helpButtonClicked(); break;
+        case 0: _t->quitClicked(); break;
+        case 1: _t->fileClicked(); break;
+        case 2: _t->dateClicked(); break;
+        case 3: _t->helpClicked(); break;
         case 4: _t->PCBClicked(); break;
         default: ;
         }

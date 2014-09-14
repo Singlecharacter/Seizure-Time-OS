@@ -30,10 +30,10 @@ public:
 
 private slots:
 
-    void quitButtonClicked();
-    void fileButtonClicked();
-    void dateButtonClicked();
-    void helpButtonClicked();
+    void quitClicked();
+    void fileClicked();
+    void dateClicked();
+    void helpClicked();
     void PCBClicked();
 
 private:

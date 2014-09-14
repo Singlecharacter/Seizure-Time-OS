@@ -40,16 +40,16 @@ MainMenu::MainMenu(QWidget *parent) :
     connect(this,SIGNAL(destroyed()),QApplication::instance(),SLOT(quit()));
 
     //Create a quit confirmation dialog when quit is clicked
-    connect(quitButton,SIGNAL(clicked()),this,SLOT(quitButtonClicked()));
+    connect(quitButton,SIGNAL(clicked()),this,SLOT(quitClicked()));
 
     //Create a directory list dialog when file list is clicked
-    connect(fileListButton,SIGNAL(clicked()),this,SLOT(fileButtonClicked()));
+    connect(fileListButton,SIGNAL(clicked()),this,SLOT(fileClicked()));
 
     //Create a date dialog when the date button is clicked
-    connect(dateButton,SIGNAL(clicked()),this,SLOT(dateButtonClicked()));
+    connect(dateButton,SIGNAL(clicked()),this,SLOT(dateClicked()));
 
     //Create a help dialog when the help button is clicked
-    connect(helpButton,SIGNAL(clicked()),this,SLOT(helpButtonClicked()));
+    connect(helpButton,SIGNAL(clicked()),this,SLOT(helpClicked()));
 
     //Create a PCB manager when PCB button is clicked
     connect(PCBButton,SIGNAL(clicked()),this,SLOT(PCBClicked()));
@@ -65,25 +65,25 @@ MainMenu::~MainMenu()
     delete dirDialog;
 }
 
-void MainMenu::quitButtonClicked()
+void MainMenu::quitClicked()
 {
     delete quitDialog;
     quitDialog = new QuitConfirmDialog(this);
 }
 
-void MainMenu::fileButtonClicked()
+void MainMenu::fileClicked()
 {
     delete dirDialog;
     dirDialog = new DirectoryListDialog(this, mainDir);
 }
 
-void MainMenu::dateButtonClicked()
+void MainMenu::dateClicked()
 {
     delete dateDialog;
     dateDialog = new DateDialog();
 }
 
-void MainMenu::helpButtonClicked()
+void MainMenu::helpClicked()
 {
     delete helpDialog;
     helpDialog = new MultiPageDialog(this,helpLibrary);
