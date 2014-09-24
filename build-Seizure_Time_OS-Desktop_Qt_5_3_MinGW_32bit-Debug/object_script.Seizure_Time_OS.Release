@@ -12,6 +12,8 @@ INPUT(
 ./release\globals.o
 ./release\textdialog.o
 ./release\multipagedialog.o
+./release\processschedulerdialog.o
+./release\processscheduler.o
 ./release\moc_seizuretimecore.o
 ./release\moc_mainmenu.o
 ./release\moc_quitconfirmdialog.o
@@ -20,4 +22,5 @@ INPUT(
 ./release\moc_pcbmanagerdialog.o
 ./release\moc_textdialog.o
 ./release\moc_multipagedialog.o
+./release\moc_processschedulerdialog.o
 );

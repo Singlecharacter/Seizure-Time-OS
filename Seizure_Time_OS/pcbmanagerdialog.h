@@ -34,16 +34,9 @@ private:
     Ui::PCBManagerDialog *ui;
 
     //ui object pointers
-    QLineEdit *createNameEdit;
     QLineEdit *editNameEdit;
-    QComboBox *classCombo;
-    QSpinBox *createPriorityBox;
     QSpinBox *editPriorityBox;
 
-    QPushButton *createButton;
-    QPushButton *deleteButton;
-    QPushButton *blockButton;
-    QPushButton *unblockButton;
     QPushButton *suspendButton;
     QPushButton *resumeButton;
     QPushButton *showButton;
@@ -57,10 +50,6 @@ private:
 
 private slots:
 
-    void createClicked();
-    void deleteClicked();
-    void blockClicked();
-    void unblockClicked();
     void suspendClicked();
     void resumeClicked();
     void showClicked();

@@ -47,6 +47,15 @@ public:
     int getRequiredMemory();
     void setRequiredMemory(int newMemory = 0);
 
+    int getTimeRemaining();
+    void setTimeRemaining(int newTime = 0);
+
+    int getTimeOfArrival();
+    void setTimeOfArrival(int newTime = 0);
+
+    int getCPUPercentage();
+    void setCPUPercentage(int newPercentage = 0);
+
 private:
 
     QString name;
@@ -55,7 +64,9 @@ private:
     ProcessState runState;
     SuspendedState suspendState;
     int requiredMemory;
-
+    int timeRemaining;
+    int timeOfArrival;
+    int CPUPercentage;
 };
 
 #endif // PCB_H

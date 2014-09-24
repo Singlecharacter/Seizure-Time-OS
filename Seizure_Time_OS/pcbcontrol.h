@@ -2,6 +2,8 @@
 #define PCBCONTROL_H
 
 #include <QString>
+#include <QFile>
+#include <QTextStream>
 
 #include "pcb.h"
 #include "pcbqueue.h"
@@ -25,6 +27,8 @@ public:
 
     int readyQueueSize();
     int blockedQueueSize();
+
+    void setupFromFile(QString fname);
 
 private:
 

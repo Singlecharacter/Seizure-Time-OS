@@ -87,6 +87,8 @@ PCB *PCBQueue::at(int index)
         currentIndex++;
         traverse = traverse->next;
     }
+
+    return NULL;
 }
 
 void PCBQueue::remove(QString findName)

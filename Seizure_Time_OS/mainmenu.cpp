@@ -53,6 +53,9 @@ MainMenu::MainMenu(QWidget *parent) :
 
     //Create a PCB manager when PCB button is clicked
     connect(PCBButton,SIGNAL(clicked()),this,SLOT(PCBClicked()));
+
+    //Support for SEIZURE TIME
+    setAutoFillBackground(true);
 }
 
 MainMenu::~MainMenu()

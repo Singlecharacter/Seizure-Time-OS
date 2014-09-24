@@ -14,7 +14,6 @@ public:
 
     static PCBControl globalPCBControl;
     static QDate systemDate;
-    static int test;
 };
 
 #endif // GLOBALS_H

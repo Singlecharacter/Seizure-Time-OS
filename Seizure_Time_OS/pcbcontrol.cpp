@@ -18,9 +18,12 @@ PCB *PCBControl::allocatePCB()
 
 void PCBControl::freePCB(PCB *PCBToDelete)
 {
-    readyQueue.remove(PCBToDelete->getName());
-    blockedQueue.remove(PCBToDelete->getName());
-    delete PCBToDelete;
+    if(PCBToDelete != NULL)
+    {
+        readyQueue.remove(PCBToDelete->getName());
+        blockedQueue.remove(PCBToDelete->getName());
+        delete PCBToDelete;
+    }
 }
 
 PCB *PCBControl::setupPCB(QString name, int priority, ProcessClass myClass)
@@ -89,4 +92,10 @@ int PCBControl::readyQueueSize()
 int PCBControl::blockedQueueSize()
 {
     return blockedQueue.getNodeCount();
+}
+
+void PCBControl::setupFromFile(QString fname)
+{
+    QFile setupFile(fname);
+    QTextStream
 }

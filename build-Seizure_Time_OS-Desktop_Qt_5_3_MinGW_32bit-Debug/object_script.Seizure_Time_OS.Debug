@@ -12,6 +12,8 @@ INPUT(
 ./debug\globals.o
 ./debug\textdialog.o
 ./debug\multipagedialog.o
+./debug\processschedulerdialog.o
+./debug\processscheduler.o
 ./debug\moc_seizuretimecore.o
 ./debug\moc_mainmenu.o
 ./debug\moc_quitconfirmdialog.o
@@ -20,4 +22,5 @@ INPUT(
 ./debug\moc_pcbmanagerdialog.o
 ./debug\moc_textdialog.o
 ./debug\moc_multipagedialog.o
+./debug\moc_processschedulerdialog.o
 );

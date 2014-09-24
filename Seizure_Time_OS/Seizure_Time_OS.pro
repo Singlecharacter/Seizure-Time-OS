@@ -24,7 +24,9 @@ SOURCES += main.cpp\
     pcbmanagerdialog.cpp \
     globals.cpp \
     textdialog.cpp \
-    multipagedialog.cpp
+    multipagedialog.cpp \
+    processschedulerdialog.cpp \
+    processscheduler.cpp
 
 HEADERS  += seizuretimecore.h \
     mainmenu.h \
@@ -38,10 +40,13 @@ HEADERS  += seizuretimecore.h \
     pcbmanagerdialog.h \
     globals.h \
     textdialog.h \
-    multipagedialog.h
+    multipagedialog.h \
+    processschedulerdialog.h \
+    processscheduler.h
 
 FORMS    += seizuretimecore.ui \
     mainmenu.ui \
-    pcbmanagerdialog.ui
+    pcbmanagerdialog.ui \
+    processschedulerdialog.ui
 
 RESOURCES +=

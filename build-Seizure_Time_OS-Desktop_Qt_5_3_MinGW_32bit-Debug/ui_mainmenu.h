@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainmenu.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.3.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -30,6 +30,7 @@ public:
     QPushButton *fileListButton;
     QPushButton *dateButton;
     QPushButton *PCBButton;
+    QPushButton *processButton;
 
     void setupUi(QWidget *MainMenu)
     {
@@ -68,10 +69,13 @@ public:
         fileListButton->setGeometry(QRect(20, 260, 75, 23));
         dateButton = new QPushButton(MainMenu);
         dateButton->setObjectName(QStringLiteral("dateButton"));
-        dateButton->setGeometry(QRect(20, 220, 75, 23));
+        dateButton->setGeometry(QRect(20, 230, 75, 23));
         PCBButton = new QPushButton(MainMenu);
         PCBButton->setObjectName(QStringLiteral("PCBButton"));
-        PCBButton->setGeometry(QRect(160, 260, 75, 23));
+        PCBButton->setGeometry(QRect(100, 260, 75, 23));
+        processButton = new QPushButton(MainMenu);
+        processButton->setObjectName(QStringLiteral("processButton"));
+        processButton->setGeometry(QRect(200, 260, 101, 23));
 
         retranslateUi(MainMenu);
 
@@ -91,6 +95,7 @@ public:
         fileListButton->setText(QApplication::translate("MainMenu", "File List", 0));
         dateButton->setText(QApplication::translate("MainMenu", "Date", 0));
         PCBButton->setText(QApplication::translate("MainMenu", "PCB Manager", 0));
+        processButton->setText(QApplication::translate("MainMenu", "Process Scheduler", 0));
     } // retranslateUi
 
 };

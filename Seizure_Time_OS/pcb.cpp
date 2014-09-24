@@ -1,6 +1,7 @@
 #include "pcb.h"
 
-PCB::PCB() : name(""), myClass(Application), priority(0), runState(Ready), suspendState(NotSuspended), requiredMemory(0)
+PCB::PCB() : name(""), myClass(Application), priority(0), runState(Ready), suspendState(NotSuspended), requiredMemory(0),
+             timeRemaining(0), timeOfArrival(0), CPUPercentage(0)
 {
 
 }
@@ -68,4 +69,34 @@ int PCB::getRequiredMemory()
 void PCB::setRequiredMemory(int newMemory)
 {
     requiredMemory = newMemory;
+}
+
+int PCB::getTimeRemaining()
+{
+    return timeRemaining;
+}
+
+void PCB::setTimeRemaining(int newTime)
+{
+    timeRemaining = newTime;
+}
+
+int PCB::getTimeOfArrival()
+{
+    return timeOfArrival;
+}
+
+void PCB::setTimeOfArrival(int newTime)
+{
+    timeOfArrival = newTime;
+}
+
+int PCB::getCPUPercentage()
+{
+    return CPUPercentage;
+}
+
+void PCB::setCPUPercentage(int newPercentage)
+{
+    CPUPercentage = newPercentage;
 }
