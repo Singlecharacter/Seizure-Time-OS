@@ -25,25 +25,27 @@ void ProcessScheduler::processTimeout()
     }
 }
 
-void ProcessScheduler::updateQueue(ScheduleType type)
+void ProcessScheduler::sortQueue(ScheduleType type)
 {
-    Globals.globalPCBControl.freePCB(runningProcess);
     if(type == SJF)
     {
-        PCB *temp = Globals.globalPCBControl.atReadyQueue(0);
-        if(temp != NULL)
+        for(int j = 0; j < Globals.globalPCBControl.readyQueueSize(); j++)
         {
-            for(int i = 1; i < Globals().globalPCBControl.readyQueueSize();i++)
+            PCB *temp = Globals.globalPCBControl.atReadyQueue(j);
+            int tempIndex = j;
+            if(temp != NULL)
             {
-                if(Globals().globalPCBControl.atReadyQueue(i)->getTimeRemaining() < temp->getTimeRemaining())
+                for(int i = 1; i < Globals().globalPCBControl.readyQueueSize();i++)
                 {
-                    temp = Globals().globalPCBControl.atReadyQueue(i);
+                    if(Globals().globalPCBControl.atReadyQueue(i)->getTimeRemaining() < temp->getTimeRemaining())
+                    {
+                        temp = Globals().globalPCBControl.atReadyQueue(i);
+                        tempIndex = i;
+                    }
                 }
+
+                Globals().globalPCBControl.swapReadyQueue(j,tempIndex);
             }
-
-            Globals().globalPCBControl.removePCB(temp);
         }
-
-        runningProcess = temp;
     }
 }

@@ -94,8 +94,21 @@ int PCBControl::blockedQueueSize()
     return blockedQueue.getNodeCount();
 }
 
-void PCBControl::setupFromFile(QString fname)
+bool PCBControl::setupFromFile(QString fname)
 {
     QFile setupFile(fname);
-    QTextStream
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        return false;
+    }
+
+    QTextStream setupStream(&setupFile);
+    while(!setupStream.atEnd())
+    {
+        QString line = setupStream.readLine();
+
+
+    }
+
+    return true;
 }

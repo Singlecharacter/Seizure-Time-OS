@@ -24,6 +24,7 @@ public:
     PCB *pop();
     PCB *at(int index = 0);
     void remove(QString findName = "");
+    void swap(int index1, int index2);
 
     PCB *find(QString findName = "");
 

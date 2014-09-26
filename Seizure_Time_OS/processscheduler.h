@@ -19,7 +19,7 @@ public:
     ProcessScheduler();
     ~ProcessScheduler();
 
-    void updateQueue(ScheduleType type);
+    void sortQueue(ScheduleType type);
 
 private:
 

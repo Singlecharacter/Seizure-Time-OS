@@ -25,10 +25,13 @@ public:
     PCB *atReadyQueue(int index = 0);
     PCB *atBlockedQueue(int index = 0);
 
+    void swapReadyQueue(int index1, int index2);
+    void swapBlockedQueue(int index1, int index2);
+
     int readyQueueSize();
     int blockedQueueSize();
 
-    void setupFromFile(QString fname);
+    bool setupFromFile(QString fname);
 
 private:
 

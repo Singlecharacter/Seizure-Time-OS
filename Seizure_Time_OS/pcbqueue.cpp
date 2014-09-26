@@ -121,6 +121,34 @@ void PCBQueue::remove(QString findName)
     }
 }
 
+void PCBQueue::swap(int index1, int index2)
+{
+    if(index1 < index2)
+    {
+        PCB *temp1 = at(index1);
+        PCB *temp2 = at(index2);
+
+        PCBNode *traverse = head;
+        PCBNode *firstHolder = temp;
+
+        int traverseIndex = 0;
+        while(traverse != NULL)
+        {
+            if(traverseIndex == index1)
+            {
+                firstHolder = traverse;
+            }
+            else if(traverseIndex == index2)
+            {
+                traverse->containedPCB = temp1;
+                firstHolder->containedPCB = temp2;
+                break;
+            }
+            traverse = traverse->next;
+        }
+    }
+}
+
 PCB *PCBQueue::find(QString findName)
 {
     PCBNode *traverse = head;
