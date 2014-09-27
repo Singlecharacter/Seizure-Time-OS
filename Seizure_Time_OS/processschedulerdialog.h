@@ -4,8 +4,10 @@
 #include <QDialog>
 #include <QTextEdit>
 #include <QLineEdit>
-#include <QPushButton>
+#include <QRadioButton>
 #include <QDir>
+#include <QTimer>
+#include <QLabel>
 
 #include "globals.h"
 #include "processscheduler.h"
@@ -25,21 +27,28 @@ public:
 
 private:
 
+    QTimer *processTimer;
     Ui::ProcessSchedulerDialog *ui;
 
     QTextEdit *readyQueueDisplay;
+    QTextEdit *completedDisplay;
     QLineEdit *filenameEdit;
-    QPushButton *SJFButton;
+    QRadioButton *SJFButton;
     QPushButton *loadButton;
+    QPushButton *startButton;
+    QLabel *runningLabel;
 
     ProcessScheduler scheduler;
 
     void printReady();
+    void printCompleted();
 
 private slots:
 
     void SJFClicked();
     void loadClicked();
+    void startClicked();
+    void processTimeout();
 };
 
 #endif // PROCESSSCHEDULERDIALOG_H

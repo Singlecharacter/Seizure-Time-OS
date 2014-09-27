@@ -93,6 +93,7 @@ PCB *PCBQueue::at(int index)
 
 void PCBQueue::remove(QString findName)
 {
+    qDebug() << "Entering remove";
     PCBNode *traverse = head;
     if(head != NULL)
     {
@@ -105,6 +106,7 @@ void PCBQueue::remove(QString findName)
 
     while(traverse != NULL)
     {
+        qDebug() << "Traversing..." << traverse;
         if(traverse->next == NULL)
         {
             break;
@@ -113,11 +115,12 @@ void PCBQueue::remove(QString findName)
         {
             if(traverse->next->containedPCB->getName() == findName)
             {
-                PCBNode *deleteTemp = traverse->next;
+                qDebug() << "Removing node..." << traverse->next;
                 traverse->next = traverse->next->next;
-                delete deleteTemp;
+                qDebug() << "Node removed.";
             }
         }
+        traverse = traverse->next;
     }
 }
 

@@ -3,16 +3,23 @@
 
 #include <QTimer>
 #include <QWidget>
+#include <QString>
+#include <QStringList>
+#include <QDebug>
 #include "pcb.h"
 #include "globals.h"
 
 enum ScheduleType
 {
     NONE,
-    SJF
+    SJF,
+    FIFO,
+    STCF,
+    FPPS,
+    RR
 };
 
-class ProcessScheduler : public QWidget
+class ProcessScheduler
 {
 
 public:
@@ -21,17 +28,18 @@ public:
     ~ProcessScheduler();
 
     void sortQueue(ScheduleType type);
+    void processTimeout();
+
+    bool currentlyRunning;
+    ScheduleType currentType;
+    QStringList completedProcesses;
+
+    QString getRunningName();
 
 private:
 
     PCB *runningProcess;
     QTimer *processTimer;
-    bool currentlyRunning;
-    ScheduleType currentType;
-
-private slots:
-
-    void processTimeout();
 
 };
 

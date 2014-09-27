@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'processschedulerdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.3.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTextEdit>
 
 QT_BEGIN_NAMESPACE
@@ -25,20 +26,26 @@ QT_BEGIN_NAMESPACE
 class Ui_ProcessSchedulerDialog
 {
 public:
-    QPushButton *SJFButton;
     QLineEdit *filenameEdit;
     QLabel *label;
     QPushButton *loadButton;
     QTextEdit *readyQueueDisplay;
+    QLabel *label_2;
+    QTextEdit *completedDisplay;
+    QPushButton *startButton;
+    QLabel *label_3;
+    QRadioButton *SJFButton;
+    QRadioButton *FIFOButton;
+    QRadioButton *STCFButton_2;
+    QRadioButton *FPPSButton;
+    QRadioButton *RRButton;
+    QLabel *runningLabel;
 
     void setupUi(QDialog *ProcessSchedulerDialog)
     {
         if (ProcessSchedulerDialog->objectName().isEmpty())
             ProcessSchedulerDialog->setObjectName(QStringLiteral("ProcessSchedulerDialog"));
-        ProcessSchedulerDialog->resize(400, 300);
-        SJFButton = new QPushButton(ProcessSchedulerDialog);
-        SJFButton->setObjectName(QStringLiteral("SJFButton"));
-        SJFButton->setGeometry(QRect(150, 140, 75, 23));
+        ProcessSchedulerDialog->resize(400, 334);
         filenameEdit = new QLineEdit(ProcessSchedulerDialog);
         filenameEdit->setObjectName(QStringLiteral("filenameEdit"));
         filenameEdit->setGeometry(QRect(80, 80, 113, 20));
@@ -51,6 +58,36 @@ public:
         readyQueueDisplay = new QTextEdit(ProcessSchedulerDialog);
         readyQueueDisplay->setObjectName(QStringLiteral("readyQueueDisplay"));
         readyQueueDisplay->setGeometry(QRect(20, 140, 104, 141));
+        label_2 = new QLabel(ProcessSchedulerDialog);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(20, 120, 70, 13));
+        completedDisplay = new QTextEdit(ProcessSchedulerDialog);
+        completedDisplay->setObjectName(QStringLiteral("completedDisplay"));
+        completedDisplay->setGeometry(QRect(250, 140, 104, 141));
+        startButton = new QPushButton(ProcessSchedulerDialog);
+        startButton->setObjectName(QStringLiteral("startButton"));
+        startButton->setGeometry(QRect(150, 280, 75, 23));
+        label_3 = new QLabel(ProcessSchedulerDialog);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(250, 120, 106, 13));
+        SJFButton = new QRadioButton(ProcessSchedulerDialog);
+        SJFButton->setObjectName(QStringLiteral("SJFButton"));
+        SJFButton->setGeometry(QRect(150, 140, 40, 17));
+        FIFOButton = new QRadioButton(ProcessSchedulerDialog);
+        FIFOButton->setObjectName(QStringLiteral("FIFOButton"));
+        FIFOButton->setGeometry(QRect(150, 160, 47, 17));
+        STCFButton_2 = new QRadioButton(ProcessSchedulerDialog);
+        STCFButton_2->setObjectName(QStringLiteral("STCFButton_2"));
+        STCFButton_2->setGeometry(QRect(150, 180, 82, 17));
+        FPPSButton = new QRadioButton(ProcessSchedulerDialog);
+        FPPSButton->setObjectName(QStringLiteral("FPPSButton"));
+        FPPSButton->setGeometry(QRect(150, 200, 82, 17));
+        RRButton = new QRadioButton(ProcessSchedulerDialog);
+        RRButton->setObjectName(QStringLiteral("RRButton"));
+        RRButton->setGeometry(QRect(150, 220, 82, 17));
+        runningLabel = new QLabel(ProcessSchedulerDialog);
+        runningLabel->setObjectName(QStringLiteral("runningLabel"));
+        runningLabel->setGeometry(QRect(130, 30, 46, 13));
 
         retranslateUi(ProcessSchedulerDialog);
 
@@ -60,9 +97,17 @@ public:
     void retranslateUi(QDialog *ProcessSchedulerDialog)
     {
         ProcessSchedulerDialog->setWindowTitle(QApplication::translate("ProcessSchedulerDialog", "Dialog", 0));
-        SJFButton->setText(QApplication::translate("ProcessSchedulerDialog", "SJF", 0));
         label->setText(QApplication::translate("ProcessSchedulerDialog", "Filename:", 0));
         loadButton->setText(QApplication::translate("ProcessSchedulerDialog", "Load", 0));
+        label_2->setText(QApplication::translate("ProcessSchedulerDialog", "Ready Queue:", 0));
+        startButton->setText(QApplication::translate("ProcessSchedulerDialog", "Start Sim", 0));
+        label_3->setText(QApplication::translate("ProcessSchedulerDialog", "Completed Processes:", 0));
+        SJFButton->setText(QApplication::translate("ProcessSchedulerDialog", "SJF", 0));
+        FIFOButton->setText(QApplication::translate("ProcessSchedulerDialog", "FIFO", 0));
+        STCFButton_2->setText(QApplication::translate("ProcessSchedulerDialog", "STCF", 0));
+        FPPSButton->setText(QApplication::translate("ProcessSchedulerDialog", "FPPS", 0));
+        RRButton->setText(QApplication::translate("ProcessSchedulerDialog", "RR", 0));
+        runningLabel->setText(QString());
     } // retranslateUi
 
 };
