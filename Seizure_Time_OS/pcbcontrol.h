@@ -2,8 +2,10 @@
 #define PCBCONTROL_H
 
 #include <QString>
+#include <QStringList>
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
 
 #include "pcb.h"
 #include "pcbqueue.h"

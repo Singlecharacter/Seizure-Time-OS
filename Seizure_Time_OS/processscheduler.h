@@ -2,6 +2,7 @@
 #define PROCESSSCHEDULER_H
 
 #include <QTimer>
+#include <QWidget>
 #include "pcb.h"
 #include "globals.h"
 
@@ -11,7 +12,7 @@ enum ScheduleType
     SJF
 };
 
-class ProcessScheduler
+class ProcessScheduler : public QWidget
 {
 
 public:

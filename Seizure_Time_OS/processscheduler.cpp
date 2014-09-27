@@ -2,11 +2,17 @@
 
 ProcessScheduler::ProcessScheduler() : currentlyRunning(false), runningProcess(NULL), currentType(NONE)
 {
-    processTimer = new QTimer(this);
+
+    processTimer = new QTimer();
     processTimer->setSingleShot(false);
     processTimer->start(1000);
 
     connect(processTimer,SIGNAL(timeout()),this,SLOT(processTimeout()));
+}
+
+ProcessScheduler::~ProcessScheduler()
+{
+
 }
 
 void ProcessScheduler::processTimeout()
@@ -19,7 +25,7 @@ void ProcessScheduler::processTimeout()
 
             if(runningProcess->getTimeRemaining() <= 0)
             {
-                updateQueue(currentType);
+                sortQueue(currentType);
             }
         }
     }
@@ -29,22 +35,14 @@ void ProcessScheduler::sortQueue(ScheduleType type)
 {
     if(type == SJF)
     {
-        for(int j = 0; j < Globals.globalPCBControl.readyQueueSize(); j++)
+        for(int j = 0; j < Globals().globalPCBControl.readyQueueSize(); j++)
         {
-            PCB *temp = Globals.globalPCBControl.atReadyQueue(j);
-            int tempIndex = j;
-            if(temp != NULL)
+            for(int i = j; i < Globals().globalPCBControl.readyQueueSize();i++)
             {
-                for(int i = 1; i < Globals().globalPCBControl.readyQueueSize();i++)
+                if(Globals().globalPCBControl.atReadyQueue(i)->getTimeRemaining() < Globals().globalPCBControl.atReadyQueue(j)->getTimeRemaining())
                 {
-                    if(Globals().globalPCBControl.atReadyQueue(i)->getTimeRemaining() < temp->getTimeRemaining())
-                    {
-                        temp = Globals().globalPCBControl.atReadyQueue(i);
-                        tempIndex = i;
-                    }
+                    Globals().globalPCBControl.swapReadyQueue(j,i);
                 }
-
-                Globals().globalPCBControl.swapReadyQueue(j,tempIndex);
             }
         }
     }

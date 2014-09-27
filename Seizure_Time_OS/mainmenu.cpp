@@ -13,6 +13,7 @@ MainMenu::MainMenu(QWidget *parent) :
     dateDialog = NULL;
     helpDialog = NULL;
     PCBDialog = NULL;
+    processDialog = NULL;
 
     mainDir = QDir().homePath() + "/Seizure_Time_OS";
     QDir temp;
@@ -31,6 +32,7 @@ MainMenu::MainMenu(QWidget *parent) :
     dateButton = ui->dateButton;
     helpButton = ui->helpButton;
     PCBButton = ui->PCBButton;
+    processButton = ui->processButton;
 
     versionLabel->setText("Version 0.2.0");
     versionLabel->adjustSize();
@@ -53,6 +55,8 @@ MainMenu::MainMenu(QWidget *parent) :
 
     //Create a PCB manager when PCB button is clicked
     connect(PCBButton,SIGNAL(clicked()),this,SLOT(PCBClicked()));
+
+    connect(processButton,SIGNAL(clicked()),this,SLOT(processClicked()));
 
     //Support for SEIZURE TIME
     setAutoFillBackground(true);
@@ -96,4 +100,10 @@ void MainMenu::PCBClicked()
 {
     delete PCBDialog;
     PCBDialog = new PCBManagerDialog();
+}
+
+void MainMenu::processClicked()
+{
+    delete processDialog;
+    processDialog = new ProcessSchedulerDialog();
 }

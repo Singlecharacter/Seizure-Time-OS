@@ -125,11 +125,12 @@ void PCBQueue::swap(int index1, int index2)
 {
     if(index1 < index2)
     {
+        qDebug() << "Starting swap.";
         PCB *temp1 = at(index1);
         PCB *temp2 = at(index2);
 
         PCBNode *traverse = head;
-        PCBNode *firstHolder = temp;
+        PCBNode *firstHolder = NULL;
 
         int traverseIndex = 0;
         while(traverse != NULL)
@@ -137,14 +138,24 @@ void PCBQueue::swap(int index1, int index2)
             if(traverseIndex == index1)
             {
                 firstHolder = traverse;
+                qDebug() << "Found index 1";
             }
             else if(traverseIndex == index2)
             {
+                qDebug() << "Found index 2";
+
+                qDebug() << traverse->containedPCB;
+                qDebug() << firstHolder->containedPCB;
+
                 traverse->containedPCB = temp1;
                 firstHolder->containedPCB = temp2;
+
+                qDebug() << traverse->containedPCB;
+                qDebug() << firstHolder->containedPCB;
                 break;
             }
             traverse = traverse->next;
+            traverseIndex++;
         }
     }
 }

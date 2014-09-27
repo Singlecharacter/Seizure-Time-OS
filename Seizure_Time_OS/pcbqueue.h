@@ -3,6 +3,8 @@
 
 #include "pcb.h"
 
+#include <QDebug>
+
 struct PCBNode
 {
     PCB *containedPCB;
@@ -24,7 +26,7 @@ public:
     PCB *pop();
     PCB *at(int index = 0);
     void remove(QString findName = "");
-    void swap(int index1, int index2);
+    void swap(int index1 = 0, int index2 = 0);
 
     PCB *find(QString findName = "");
 

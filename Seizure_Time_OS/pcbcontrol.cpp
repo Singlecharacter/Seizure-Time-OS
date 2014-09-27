@@ -96,8 +96,12 @@ int PCBControl::blockedQueueSize()
 
 bool PCBControl::setupFromFile(QString fname)
 {
+
+    readyQueue.deleteNodes();
+    blockedQueue.deleteNodes();
+
     QFile setupFile(fname);
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if(!setupFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         return false;
     }
@@ -106,9 +110,47 @@ bool PCBControl::setupFromFile(QString fname)
     while(!setupStream.atEnd())
     {
         QString line = setupStream.readLine();
+        QStringList linePieces = line.split(" ");
 
+        if(linePieces.length() == 7)
+        {
+            PCB *newPCB = allocatePCB();
 
+            newPCB->setName(linePieces.at(0));
+
+            if(linePieces.at(1) == "A")
+            {
+                newPCB->setClass(Application);
+            }
+            else
+            {
+                newPCB->setClass(System);
+            }
+
+            newPCB->setPriority(linePieces.at(2).toInt());
+            newPCB->setRequiredMemory(linePieces.at(3).toInt());
+            newPCB->setTimeRemaining(linePieces.at(4).toInt());
+            newPCB->setTimeOfArrival(linePieces.at(5).toInt());
+            newPCB->setCPUPercentage(linePieces.at(6).toInt());
+
+            insertPCB(newPCB);
+        }
+        else
+        {
+
+            break;
+        }
     }
 
     return true;
+}
+
+void PCBControl::swapBlockedQueue(int index1, int index2)
+{
+    blockedQueue.swap(index1,index2);
+}
+
+void PCBControl::swapReadyQueue(int index1, int index2)
+{
+    readyQueue.swap(index1,index2);
 }

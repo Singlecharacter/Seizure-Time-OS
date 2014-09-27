@@ -14,6 +14,7 @@
 #include "multipagedialog.h"
 #include "pcbmanagerdialog.h"
 #include "globals.h"
+#include "processschedulerdialog.h"
 
 namespace Ui {
 class MainMenu;
@@ -35,6 +36,7 @@ private slots:
     void dateClicked();
     void helpClicked();
     void PCBClicked();
+    void processClicked();
 
 private:
 
@@ -46,6 +48,7 @@ private:
     DateDialog *dateDialog;
     MultiPageDialog *helpDialog;
     PCBManagerDialog *PCBDialog;
+    ProcessSchedulerDialog *processDialog;
 
     QString mainDir;
     QStringList helpLibrary;
@@ -56,6 +59,7 @@ private:
     QPushButton *dateButton;
     QPushButton *helpButton;
     QPushButton *PCBButton;
+    QPushButton *processButton;
     QLabel *versionLabel;
 };
 
