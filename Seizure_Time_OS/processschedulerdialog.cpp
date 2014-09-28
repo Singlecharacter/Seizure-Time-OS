@@ -5,9 +5,8 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ProcessSchedulerDialog)
 {
-    qDebug() << "Setting up process scheduler.";
-
     ui->setupUi(this);
+
 
     SJFButton = ui->SJFButton;
     FIFOButton = ui->FIFOButton;
@@ -17,12 +16,11 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     readyQueueDisplay = ui->readyQueueDisplay;
     completedDisplay = ui->completedDisplay;
     startButton = ui->startButton;
-    //runningLabel = ui->runningLabel;
+    runningLabel = ui->runningLabel;
+
     processTimer = new QTimer();
     processTimer->setSingleShot(false);
     processTimer->start(1000);
-
-    qDebug() << "Pointers allocated.";
 
     connect(processTimer,SIGNAL(timeout()),this,SLOT(processTimeout()));
     connect(loadButton,SIGNAL(clicked()),this,SLOT(loadClicked()));

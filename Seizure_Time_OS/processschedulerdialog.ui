@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>30</y>
+     <y>80</y>
      <width>113</width>
      <height>20</height>
     </rect>
@@ -27,7 +27,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>30</y>
+     <y>80</y>
      <width>46</width>
      <height>13</height>
     </rect>
@@ -40,7 +40,7 @@
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>30</y>
+     <y>80</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -113,7 +113,7 @@
     <rect>
      <x>150</x>
      <y>140</y>
-     <width>82</width>
+     <width>40</width>
      <height>17</height>
     </rect>
    </property>
@@ -126,7 +126,7 @@
     <rect>
      <x>150</x>
      <y>160</y>
-     <width>82</width>
+     <width>47</width>
      <height>17</height>
     </rect>
    </property>
@@ -134,30 +134,56 @@
     <string>FIFO</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="STCFButton">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>180</y>
-     <width>82</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>STCF</string>
-   </property>
-  </widget>
   <widget class="QRadioButton" name="FPPSButton">
    <property name="geometry">
     <rect>
      <x>150</x>
      <y>200</y>
-     <width>82</width>
+     <width>47</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
     <string>FPPS</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="RRButton">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>220</y>
+     <width>37</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>RR</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="runningLabel">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>30</y>
+     <width>46</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="STCFButton">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>180</y>
+     <width>48</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>STCF</string>
    </property>
   </widget>
  </widget>
