@@ -1,6 +1,7 @@
 #include "processscheduler.h"
 
-ProcessScheduler::ProcessScheduler() : currentlyRunning(false), runningProcess(NULL), currentType(NONE), systemTime(0)
+ProcessScheduler::ProcessScheduler() : currentlyRunning(false), runningProcess(NULL), currentType(NONE), systemTime(0), quantumTime(0),
+                                       currentQuantumTime(0)
 {
     completedProcesses.clear();
 }
@@ -76,6 +77,34 @@ void ProcessScheduler::processTimeout()
                     }
                 }
             }
+            else if(currentType == FPPS)
+            {
+                if(runningProcess->getTimeRemaining() <= 0)
+                {
+                    qDebug() << "Switching processes...";
+                    completedProcesses.push_back(runningProcess->getName());
+                    sortQueue(currentType);
+                    Globals().globalPCBControl.freePCB(runningProcess);
+                    runningProcess = NULL;
+                    if(Globals().globalPCBControl.readyQueueSize() > 0)
+                    {
+                        runningProcess = Globals().globalPCBControl.atReadyQueue(0);
+                        Globals().globalPCBControl.removePCB(runningProcess);
+                    }
+                    qDebug() << "New process: " << runningProcess;
+                }
+                else if(Globals().globalPCBControl.readyQueueSize() > 0)
+                {
+                    if(Globals().globalPCBControl.atReadyQueue(0)->getPriority() > runningProcess->getPriority())
+                    {
+                        PCB *temp = Globals().globalPCBControl.atReadyQueue(0);
+                        Globals().globalPCBControl.removePCB(temp);
+                        runningProcess->setRunState(Ready);
+                        Globals().globalPCBControl.insertPCB(runningProcess);
+                        runningProcess = temp;
+                    }
+                }
+            }
         }
         else
         {
@@ -135,6 +164,23 @@ void ProcessScheduler::sortQueue(ScheduleType type)
             for(int i = j; i < Globals().globalPCBControl.readyQueueSize();i++)
             {
                 if(Globals().globalPCBControl.atReadyQueue(i)->getTimeRemaining() < Globals().globalPCBControl.atReadyQueue(j)->getTimeRemaining())
+                {
+                    Globals().globalPCBControl.swapReadyQueue(j,i);
+                }
+            }
+        }
+    }
+    else if(type == FPPS)
+    {
+        qDebug() << "Sorting for FPPS.";
+        setupIncomplete();
+
+        //Sort the ready queue by priority
+        for(int j = 0; j < Globals().globalPCBControl.readyQueueSize(); j++)
+        {
+            for(int i = j; i < Globals().globalPCBControl.readyQueueSize();i++)
+            {
+                if(Globals().globalPCBControl.atReadyQueue(i)->getPriority() > Globals().globalPCBControl.atReadyQueue(j)->getPriority())
                 {
                     Globals().globalPCBControl.swapReadyQueue(j,i);
                 }

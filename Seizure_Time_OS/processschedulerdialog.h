@@ -5,6 +5,7 @@
 #include <QTextEdit>
 #include <QLineEdit>
 #include <QRadioButton>
+#include <QSpinBox>
 #include <QDir>
 #include <QTimer>
 #include <QLabel>
