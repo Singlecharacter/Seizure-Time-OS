@@ -36,10 +36,10 @@ public:
     QLabel *label_3;
     QRadioButton *SJFButton;
     QRadioButton *FIFOButton;
-    QRadioButton *STCFButton_2;
     QRadioButton *FPPSButton;
     QRadioButton *RRButton;
     QLabel *runningLabel;
+    QRadioButton *STCFButton;
 
     void setupUi(QDialog *ProcessSchedulerDialog)
     {
@@ -76,18 +76,18 @@ public:
         FIFOButton = new QRadioButton(ProcessSchedulerDialog);
         FIFOButton->setObjectName(QStringLiteral("FIFOButton"));
         FIFOButton->setGeometry(QRect(150, 160, 47, 17));
-        STCFButton_2 = new QRadioButton(ProcessSchedulerDialog);
-        STCFButton_2->setObjectName(QStringLiteral("STCFButton_2"));
-        STCFButton_2->setGeometry(QRect(150, 180, 82, 17));
         FPPSButton = new QRadioButton(ProcessSchedulerDialog);
         FPPSButton->setObjectName(QStringLiteral("FPPSButton"));
-        FPPSButton->setGeometry(QRect(150, 200, 82, 17));
+        FPPSButton->setGeometry(QRect(150, 200, 47, 17));
         RRButton = new QRadioButton(ProcessSchedulerDialog);
         RRButton->setObjectName(QStringLiteral("RRButton"));
-        RRButton->setGeometry(QRect(150, 220, 82, 17));
+        RRButton->setGeometry(QRect(150, 220, 37, 17));
         runningLabel = new QLabel(ProcessSchedulerDialog);
         runningLabel->setObjectName(QStringLiteral("runningLabel"));
         runningLabel->setGeometry(QRect(130, 30, 46, 13));
+        STCFButton = new QRadioButton(ProcessSchedulerDialog);
+        STCFButton->setObjectName(QStringLiteral("STCFButton"));
+        STCFButton->setGeometry(QRect(150, 180, 48, 17));
 
         retranslateUi(ProcessSchedulerDialog);
 
@@ -104,10 +104,10 @@ public:
         label_3->setText(QApplication::translate("ProcessSchedulerDialog", "Completed Processes:", 0));
         SJFButton->setText(QApplication::translate("ProcessSchedulerDialog", "SJF", 0));
         FIFOButton->setText(QApplication::translate("ProcessSchedulerDialog", "FIFO", 0));
-        STCFButton_2->setText(QApplication::translate("ProcessSchedulerDialog", "STCF", 0));
         FPPSButton->setText(QApplication::translate("ProcessSchedulerDialog", "FPPS", 0));
         RRButton->setText(QApplication::translate("ProcessSchedulerDialog", "RR", 0));
         runningLabel->setText(QString());
+        STCFButton->setText(QApplication::translate("ProcessSchedulerDialog", "STCF", 0));
     } // retranslateUi
 
 };

@@ -34,6 +34,7 @@ private:
     QTextEdit *completedDisplay;
     QLineEdit *filenameEdit;
     QRadioButton *SJFButton;
+    QRadioButton *FIFOButton;
     QPushButton *loadButton;
     QPushButton *startButton;
     QLabel *runningLabel;
@@ -46,6 +47,8 @@ private:
 private slots:
 
     void SJFClicked();
+    void FIFOClicked();
+    void STCFClicked();
     void loadClicked();
     void startClicked();
     void processTimeout();

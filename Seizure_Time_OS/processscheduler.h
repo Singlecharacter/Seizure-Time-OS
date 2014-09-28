@@ -33,8 +33,11 @@ public:
     bool currentlyRunning;
     ScheduleType currentType;
     QStringList completedProcesses;
+    int systemTime;
 
     QString getRunningName();
+
+    void setupIncomplete();
 
 private:
 

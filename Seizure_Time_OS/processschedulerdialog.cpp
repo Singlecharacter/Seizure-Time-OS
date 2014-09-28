@@ -7,7 +7,10 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     SJFButton = ui->SJFButton;
+    FIFOButton = ui->FIFOButton;
+    QRadioButton *STCFButton = ui->STCFButton;
     loadButton = ui->loadButton;
     filenameEdit = ui->filenameEdit;
     readyQueueDisplay = ui->readyQueueDisplay;
@@ -22,6 +25,8 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     connect(processTimer,SIGNAL(timeout()),this,SLOT(processTimeout()));
     connect(loadButton,SIGNAL(clicked()),this,SLOT(loadClicked()));
     connect(SJFButton,SIGNAL(clicked()),this,SLOT(SJFClicked()));
+    connect(FIFOButton,SIGNAL(clicked()),this,SLOT(FIFOClicked()));
+    connect(STCFButton,SIGNAL(clicked()),this,SLOT(STCFClicked()));
     connect(startButton,SIGNAL(clicked()),this,SLOT(startClicked()));
 
     show();
@@ -36,6 +41,7 @@ void ProcessSchedulerDialog::loadClicked()
 {
     Globals().globalPCBControl.setupFromFile(QDir().homePath() + "/Seizure_Time_OS/" + filenameEdit->text());
     scheduler.currentlyRunning = false;
+    scheduler.systemTime = 0;
     runningLabel->setText("Running process: NONE");
     runningLabel->adjustSize();
     scheduler.completedProcesses.clear();
@@ -47,6 +53,20 @@ void ProcessSchedulerDialog::SJFClicked()
 {
     scheduler.sortQueue(SJF);
     scheduler.currentType = SJF;
+    printReady();
+}
+
+void ProcessSchedulerDialog::FIFOClicked()
+{
+    scheduler.sortQueue(FIFO);
+    scheduler.currentType = FIFO;
+    printReady();
+}
+
+void ProcessSchedulerDialog::STCFClicked()
+{
+    scheduler.sortQueue(STCF);
+    scheduler.currentType = STCF;
     printReady();
 }
 
