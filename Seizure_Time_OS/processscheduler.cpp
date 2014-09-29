@@ -1,6 +1,7 @@
 #include "processscheduler.h"
 
-ProcessScheduler::ProcessScheduler() : currentlyRunning(false), runningProcess(NULL), currentType(NONE), systemTime(0)
+ProcessScheduler::ProcessScheduler() : currentlyRunning(false), runningProcess(NULL), currentType(NONE), systemTime(0), timeQuantumSize(0),
+                                       currentTimeQuantum(0)
 {
     completedProcesses.clear();
 }
@@ -20,7 +21,6 @@ void ProcessScheduler::processTimeout()
 
     if(currentlyRunning)
     {
-        systemTime++;
         qDebug() << "Timeout";
         sortQueue(currentType);
 
@@ -76,6 +76,69 @@ void ProcessScheduler::processTimeout()
                     }
                 }
             }
+            else if(currentType == FPPS)
+            {
+                if(runningProcess->getTimeRemaining() <= 0)
+                {
+                    qDebug() << "Switching processes...";
+                    completedProcesses.push_back(runningProcess->getName());
+                    sortQueue(currentType);
+                    Globals().globalPCBControl.freePCB(runningProcess);
+                    runningProcess = NULL;
+                    if(Globals().globalPCBControl.readyQueueSize() > 0)
+                    {
+                        runningProcess = Globals().globalPCBControl.atReadyQueue(0);
+                        Globals().globalPCBControl.removePCB(runningProcess);
+                    }
+                    qDebug() << "New process: " << runningProcess;
+                }
+                else if(Globals().globalPCBControl.readyQueueSize() > 0)
+                {
+                    if(Globals().globalPCBControl.atReadyQueue(0)->getPriority() > runningProcess->getPriority())
+                    {
+                        PCB *temp = Globals().globalPCBControl.atReadyQueue(0);
+                        Globals().globalPCBControl.removePCB(temp);
+                        runningProcess->setRunState(Ready);
+                        Globals().globalPCBControl.insertPCB(runningProcess);
+                        runningProcess = temp;
+                    }
+                }
+            }
+            else if(currentType == RR)
+            {
+                if(runningProcess->getTimeRemaining() <= 0)
+                {
+                    currentTimeQuantum = 0;
+                    qDebug() << "Switching processes...";
+                    completedProcesses.push_back(runningProcess->getName());
+                    sortQueue(currentType);
+                    Globals().globalPCBControl.freePCB(runningProcess);
+                    runningProcess = NULL;
+                    if(Globals().globalPCBControl.readyQueueSize() > 0)
+                    {
+                        runningProcess = Globals().globalPCBControl.atReadyQueue(0);
+                        Globals().globalPCBControl.removePCB(runningProcess);
+                    }
+                    qDebug() << "New process: " << runningProcess;
+                }
+                else if(currentTimeQuantum == timeQuantumSize)
+                {
+                    currentTimeQuantum = 0;
+                    PCB *temp = runningProcess;
+                    runningProcess = NULL;
+                    temp->setRunState(Blocked);
+                    Globals().globalPCBControl.insertPCB(temp);
+                    if(Globals().globalPCBControl.readyQueueSize() > 0)
+                    {
+                        runningProcess = Globals().globalPCBControl.atReadyQueue(0);
+                        Globals().globalPCBControl.removePCB(runningProcess);
+                    }
+                }
+                else
+                {
+                    currentTimeQuantum++;
+                }
+            }
         }
         else
         {
@@ -87,6 +150,8 @@ void ProcessScheduler::processTimeout()
                 qDebug() << runningProcess->getName();
             }
         }
+
+        systemTime++;
     }
 }
 
@@ -141,6 +206,46 @@ void ProcessScheduler::sortQueue(ScheduleType type)
             }
         }
     }
+    else if(type == FPPS)
+    {
+        qDebug() << "Sorting for FPPS.";
+        setupIncomplete();
+
+        //Sort the ready queue by priority
+        for(int j = 0; j < Globals().globalPCBControl.readyQueueSize(); j++)
+        {
+            for(int i = j; i < Globals().globalPCBControl.readyQueueSize();i++)
+            {
+                if(Globals().globalPCBControl.atReadyQueue(i)->getPriority() > Globals().globalPCBControl.atReadyQueue(j)->getPriority())
+                {
+                    Globals().globalPCBControl.swapReadyQueue(j,i);
+                }
+            }
+        }
+    }
+    else if(type == RR)
+    {
+        qDebug() << "Sorting for RR.";
+        setupIncomplete();
+
+        if(Globals().globalPCBControl.readyQueueSize() == 0)
+        {
+            if(Globals().globalPCBControl.blockedQueueSize() > 0)
+            {
+                //If the ready queue is empty, move all blocked processes that have arrived back to the ready queue
+                for(int i = 0; i < Globals().globalPCBControl.blockedQueueSize(); i++)
+                {
+                    PCB *temp = Globals().globalPCBControl.atBlockedQueue(i);
+                    if(temp->getTimeOfArrival() <= systemTime)
+                    {
+                        Globals().globalPCBControl.removePCB(temp);
+                        temp->setRunState(Ready);
+                        Globals().globalPCBControl.insertPCB(temp);
+                    }
+                }
+            }
+        }
+    }
 }
 
 QString ProcessScheduler::getRunningName()
@@ -170,11 +275,12 @@ void ProcessScheduler::setupIncomplete()
         }
     }
 
+
     //Move any newly arrived processes to the ready queue
     for(int i = 0; i < Globals().globalPCBControl.blockedQueueSize(); i++)
     {
         PCB *temp = Globals().globalPCBControl.atBlockedQueue(i);
-        if(temp->getTimeOfArrival() <= systemTime)
+        if(temp->getTimeOfArrival() == systemTime)
         {
             Globals().globalPCBControl.removePCB(temp);
             temp->setRunState(Ready);

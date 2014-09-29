@@ -19,6 +19,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTextEdit>
 
 QT_BEGIN_NAMESPACE
@@ -40,6 +41,8 @@ public:
     QRadioButton *RRButton;
     QLabel *runningLabel;
     QRadioButton *STCFButton;
+    QLabel *label_4;
+    QSpinBox *quantumBox;
 
     void setupUi(QDialog *ProcessSchedulerDialog)
     {
@@ -48,13 +51,13 @@ public:
         ProcessSchedulerDialog->resize(400, 334);
         filenameEdit = new QLineEdit(ProcessSchedulerDialog);
         filenameEdit->setObjectName(QStringLiteral("filenameEdit"));
-        filenameEdit->setGeometry(QRect(80, 80, 113, 20));
+        filenameEdit->setGeometry(QRect(80, 30, 113, 20));
         label = new QLabel(ProcessSchedulerDialog);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(30, 80, 46, 13));
+        label->setGeometry(QRect(30, 30, 46, 13));
         loadButton = new QPushButton(ProcessSchedulerDialog);
         loadButton->setObjectName(QStringLiteral("loadButton"));
-        loadButton->setGeometry(QRect(200, 80, 75, 23));
+        loadButton->setGeometry(QRect(200, 30, 75, 23));
         readyQueueDisplay = new QTextEdit(ProcessSchedulerDialog);
         readyQueueDisplay->setObjectName(QStringLiteral("readyQueueDisplay"));
         readyQueueDisplay->setGeometry(QRect(20, 140, 104, 141));
@@ -84,10 +87,18 @@ public:
         RRButton->setGeometry(QRect(150, 220, 37, 17));
         runningLabel = new QLabel(ProcessSchedulerDialog);
         runningLabel->setObjectName(QStringLiteral("runningLabel"));
-        runningLabel->setGeometry(QRect(130, 30, 46, 13));
+        runningLabel->setGeometry(QRect(140, 10, 46, 13));
         STCFButton = new QRadioButton(ProcessSchedulerDialog);
         STCFButton->setObjectName(QStringLiteral("STCFButton"));
         STCFButton->setGeometry(QRect(150, 180, 48, 17));
+        label_4 = new QLabel(ProcessSchedulerDialog);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(30, 60, 73, 13));
+        quantumBox = new QSpinBox(ProcessSchedulerDialog);
+        quantumBox->setObjectName(QStringLiteral("quantumBox"));
+        quantumBox->setGeometry(QRect(110, 60, 42, 22));
+        quantumBox->setMinimum(5);
+        quantumBox->setMaximum(30);
 
         retranslateUi(ProcessSchedulerDialog);
 
@@ -108,6 +119,7 @@ public:
         RRButton->setText(QApplication::translate("ProcessSchedulerDialog", "RR", 0));
         runningLabel->setText(QString());
         STCFButton->setText(QApplication::translate("ProcessSchedulerDialog", "STCF", 0));
+        label_4->setText(QApplication::translate("ProcessSchedulerDialog", "Time Quantum:", 0));
     } // retranslateUi
 
 };

@@ -34,6 +34,8 @@ public:
     ScheduleType currentType;
     QStringList completedProcesses;
     int systemTime;
+    int timeQuantumSize;
+    int currentTimeQuantum;
 
     QString getRunningName();
 

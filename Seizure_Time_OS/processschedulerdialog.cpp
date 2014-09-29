@@ -8,15 +8,18 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     ui->setupUi(this);
 
 
-    SJFButton = ui->SJFButton;
-    FIFOButton = ui->FIFOButton;
+    QRadioButton *SJFButton = ui->SJFButton;
+    QRadioButton *FIFOButton = ui->FIFOButton;
     QRadioButton *STCFButton = ui->STCFButton;
-    loadButton = ui->loadButton;
+    QRadioButton *FPPSButton = ui->FPPSButton;
+    QRadioButton *RRButton = ui->RRButton;
+    QPushButton *loadButton = ui->loadButton;
     filenameEdit = ui->filenameEdit;
     readyQueueDisplay = ui->readyQueueDisplay;
     completedDisplay = ui->completedDisplay;
-    startButton = ui->startButton;
+    QPushButton *startButton = ui->startButton;
     runningLabel = ui->runningLabel;
+    runningLabel->setText("Running process: NONE");
 
     processTimer = new QTimer();
     processTimer->setSingleShot(false);
@@ -27,6 +30,8 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     connect(SJFButton,SIGNAL(clicked()),this,SLOT(SJFClicked()));
     connect(FIFOButton,SIGNAL(clicked()),this,SLOT(FIFOClicked()));
     connect(STCFButton,SIGNAL(clicked()),this,SLOT(STCFClicked()));
+    connect(FPPSButton,SIGNAL(clicked()),this,SLOT(FPPSClicked()));
+    connect(RRButton,SIGNAL(clicked()),this,SLOT(RRClicked()));
     connect(startButton,SIGNAL(clicked()),this,SLOT(startClicked()));
 
     show();
@@ -67,6 +72,21 @@ void ProcessSchedulerDialog::STCFClicked()
 {
     scheduler.sortQueue(STCF);
     scheduler.currentType = STCF;
+    printReady();
+}
+
+void ProcessSchedulerDialog::FPPSClicked()
+{
+    scheduler.sortQueue(FPPS);
+    scheduler.currentType = FPPS;
+    printReady();
+}
+
+void ProcessSchedulerDialog::RRClicked()
+{
+    scheduler.sortQueue(RR);
+    scheduler.currentType = RR;
+    scheduler.timeQuantumSize = ui->quantumBox->value();
     printReady();
 }
 
