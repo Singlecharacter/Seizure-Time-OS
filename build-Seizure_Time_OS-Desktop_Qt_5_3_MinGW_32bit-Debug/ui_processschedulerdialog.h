@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'processschedulerdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.0
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -43,6 +43,8 @@ public:
     QRadioButton *STCFButton;
     QLabel *label_4;
     QSpinBox *quantumBox;
+    QRadioButton *MLFQButton;
+    QRadioButton *LSButton;
 
     void setupUi(QDialog *ProcessSchedulerDialog)
     {
@@ -99,6 +101,12 @@ public:
         quantumBox->setGeometry(QRect(110, 60, 42, 22));
         quantumBox->setMinimum(5);
         quantumBox->setMaximum(30);
+        MLFQButton = new QRadioButton(ProcessSchedulerDialog);
+        MLFQButton->setObjectName(QStringLiteral("MLFQButton"));
+        MLFQButton->setGeometry(QRect(150, 240, 82, 17));
+        LSButton = new QRadioButton(ProcessSchedulerDialog);
+        LSButton->setObjectName(QStringLiteral("LSButton"));
+        LSButton->setGeometry(QRect(150, 260, 82, 17));
 
         retranslateUi(ProcessSchedulerDialog);
 
@@ -120,6 +128,8 @@ public:
         runningLabel->setText(QString());
         STCFButton->setText(QApplication::translate("ProcessSchedulerDialog", "STCF", 0));
         label_4->setText(QApplication::translate("ProcessSchedulerDialog", "Time Quantum:", 0));
+        MLFQButton->setText(QApplication::translate("ProcessSchedulerDialog", "MLFQ", 0));
+        LSButton->setText(QApplication::translate("ProcessSchedulerDialog", "LS", 0));
     } // retranslateUi
 
 };

@@ -139,6 +139,41 @@ void ProcessScheduler::processTimeout()
                     currentTimeQuantum++;
                 }
             }
+            else if(currentType == MLFQ)
+            {
+                if(runningProcess->getTimeRemaining() <= 0)
+                {
+                    currentTimeQuantum = 0;
+                    qDebug() << "Switching processes...";
+                    completedProcesses.push_back(runningProcess->getName());
+                    sortQueue(currentType);
+                    Globals().globalPCBControl.freePCB(runningProcess);
+                    runningProcess = NULL;
+                    if(Globals().globalPCBControl.readyQueueSize() > 0)
+                    {
+                        runningProcess = Globals().globalPCBControl.atReadyQueue(0);
+                        Globals().globalPCBControl.removePCB(runningProcess);
+                    }
+                    qDebug() << "New process: " << runningProcess;
+                }
+                else if(currentTimeQuantum == timeQuantumSize)
+                {
+                    currentTimeQuantum = 0;
+                    PCB *temp = runningProcess;
+                    runningProcess = NULL;
+                    temp->setPriority(temp->getPriority()-1);
+                    Globals().globalPCBControl.insertPCB(temp);
+                    if(Globals().globalPCBControl.readyQueueSize() > 0)
+                    {
+                        runningProcess = Globals().globalPCBControl.atReadyQueue(0);
+                        Globals().globalPCBControl.removePCB(runningProcess);
+                    }
+                }
+                else
+                {
+                    currentTimeQuantum++;
+                }
+            }
         }
         else
         {
@@ -243,6 +278,34 @@ void ProcessScheduler::sortQueue(ScheduleType type)
                         Globals().globalPCBControl.insertPCB(temp);
                     }
                 }
+            }
+        }
+    }
+    else if(type == MLFQ)
+    {
+        qDebug() << "Sorting for MLFQ.";
+        setupIncomplete();
+
+        //Sort the ready queue by priority
+        sortQueue(FPPS);
+
+        //Check the blocked queue to see if all processes have arrived
+        if(Globals().globalPCBControl.blockedQueueSize() == 0)
+        {
+            //Check that all process priorities are 0
+            bool zeroCheck = true;
+            for(int i = 0; i < Globals().globalPCBControl.readyQueueSize(); i++)
+            {
+                if(Globals().globalPCBControl.atReadyQueue(i)->getPriority() != 0)
+                {
+                    zeroCheck = false;
+                    break;
+                }
+            }
+
+            if(zeroCheck)
+            {
+                currentType = RR;
             }
         }
     }

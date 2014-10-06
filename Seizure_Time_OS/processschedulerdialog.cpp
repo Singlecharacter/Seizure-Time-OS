@@ -13,6 +13,8 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     QRadioButton *STCFButton = ui->STCFButton;
     QRadioButton *FPPSButton = ui->FPPSButton;
     QRadioButton *RRButton = ui->RRButton;
+    QRadioButton *MLFQButton = ui->MLFQButton;
+    QRadioButton *LSButton = ui->LSButton;
     QPushButton *loadButton = ui->loadButton;
     filenameEdit = ui->filenameEdit;
     readyQueueDisplay = ui->readyQueueDisplay;
@@ -32,6 +34,7 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     connect(STCFButton,SIGNAL(clicked()),this,SLOT(STCFClicked()));
     connect(FPPSButton,SIGNAL(clicked()),this,SLOT(FPPSClicked()));
     connect(RRButton,SIGNAL(clicked()),this,SLOT(RRClicked()));
+    connect(MLFQButton,SIGNAL(clicked()),this,SLOT(MLFQClicked()));
     connect(startButton,SIGNAL(clicked()),this,SLOT(startClicked()));
 
     show();
@@ -86,6 +89,22 @@ void ProcessSchedulerDialog::RRClicked()
 {
     scheduler.sortQueue(RR);
     scheduler.currentType = RR;
+    scheduler.timeQuantumSize = ui->quantumBox->value();
+    printReady();
+}
+
+void ProcessSchedulerDialog::MLFQClicked()
+{
+    scheduler.sortQueue(MLFQ);
+    scheduler.currentType = MLFQ;
+    scheduler.timeQuantumSize = ui->quantumBox->value();
+    printReady();
+}
+
+void ProcessSchedulerDialog::LSClicked()
+{
+    scheduler.sortQueue(LS);
+    scheduler.currentType = LS;
     scheduler.timeQuantumSize = ui->quantumBox->value();
     printReady();
 }

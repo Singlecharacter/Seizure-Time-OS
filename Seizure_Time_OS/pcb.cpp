@@ -39,6 +39,10 @@ int PCB::getPriority()
 void PCB::setPriority(int newPriority)
 {
     priority = newPriority;
+    if(priority < 0)
+    {
+        priority = 0;
+    }
 }
 
 ProcessState PCB::getRunState()

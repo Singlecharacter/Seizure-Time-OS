@@ -47,6 +47,8 @@ private slots:
     void STCFClicked();
     void FPPSClicked();
     void RRClicked();
+    void MLFQClicked();
+    void LSClicked();
     void loadClicked();
     void startClicked();
     void processTimeout();

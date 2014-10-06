@@ -16,7 +16,9 @@ enum ScheduleType
     FIFO,
     STCF,
     FPPS,
-    RR
+    RR,
+    MLFQ,
+    LS
 };
 
 class ProcessScheduler

@@ -215,6 +215,32 @@
     <number>30</number>
    </property>
   </widget>
+  <widget class="QRadioButton" name="MLFQButton">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>240</y>
+     <width>82</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>MLFQ</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="LSButton">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>260</y>
+     <width>82</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>LS</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
