@@ -25,7 +25,7 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
 
     processTimer = new QTimer();
     processTimer->setSingleShot(false);
-    processTimer->start(1000);
+    processTimer->start(1);
 
     connect(processTimer,SIGNAL(timeout()),this,SLOT(processTimeout()));
     connect(loadButton,SIGNAL(clicked()),this,SLOT(loadClicked()));

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'processschedulerdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.1
+** Created by: Qt User Interface Compiler version 5.3.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -99,8 +99,8 @@ public:
         quantumBox = new QSpinBox(ProcessSchedulerDialog);
         quantumBox->setObjectName(QStringLiteral("quantumBox"));
         quantumBox->setGeometry(QRect(110, 60, 42, 22));
-        quantumBox->setMinimum(5);
-        quantumBox->setMaximum(30);
+        quantumBox->setMinimum(1);
+        quantumBox->setMaximum(1000);
         MLFQButton = new QRadioButton(ProcessSchedulerDialog);
         MLFQButton->setObjectName(QStringLiteral("MLFQButton"));
         MLFQButton->setGeometry(QRect(150, 240, 82, 17));

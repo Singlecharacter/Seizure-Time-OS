@@ -309,6 +309,11 @@ void ProcessScheduler::sortQueue(ScheduleType type)
             }
         }
     }
+    else if(type == LS)
+    {
+        qDebug() << "Sorting for LS.";
+        setupIncomplete();
+    }
 }
 
 QString ProcessScheduler::getRunningName()
