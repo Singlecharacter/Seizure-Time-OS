@@ -2,6 +2,7 @@
 
 QDate Globals::systemDate;
 PCBControl Globals::globalPCBControl;
+QString Globals::mainDir;
 
 Globals::Globals()
 {

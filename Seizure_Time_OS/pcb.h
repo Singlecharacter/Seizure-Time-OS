@@ -67,6 +67,7 @@ private:
     int timeRemaining;
     int timeOfArrival;
     int CPUPercentage;
+    bool memAllocated;
 };
 
 #endif // PCB_H

@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     textdialog.cpp \
     multipagedialog.cpp \
     processschedulerdialog.cpp \
-    processscheduler.cpp
+    processscheduler.cpp \
+    memorymanager.cpp
 
 HEADERS  += seizuretimecore.h \
     mainmenu.h \
@@ -42,7 +43,8 @@ HEADERS  += seizuretimecore.h \
     textdialog.h \
     multipagedialog.h \
     processschedulerdialog.h \
-    processscheduler.h
+    processscheduler.h \
+    memorymanager.h
 
 FORMS    += seizuretimecore.ui \
     mainmenu.ui \

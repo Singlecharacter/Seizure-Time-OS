@@ -13,14 +13,38 @@ ProcessScheduler::~ProcessScheduler()
 
 void ProcessScheduler::processTimeout()
 {
-    if(currentType == NONE || (Globals().globalPCBControl.readyQueueSize() == 0 && Globals().globalPCBControl.blockedQueueSize() == 0 && runningProcess == NULL) )
+    if(currentType == NONE || (Globals().globalPCBControl.readyQueueSize() == 0 &&
+                               Globals().globalPCBControl.blockedQueueSize() == 0 &&
+                               runningProcess == NULL &&
+                               completedProcesses.size() > 0))
     {
+        if(systemTime > 0)
+        {
+            f.open(QIODevice::WriteOnly | QIODevice::Append);
+            fout.setDevice(&f);
+            float averageTurnaroundTime = totalTurnaroundTime/completedProcesses.size();
+
+            fout << "\r\n";
+            fout << "Total time to completion: " << systemTime << "\r\n";
+            fout << "Average turnaround time: " << averageTurnaroundTime << "\r\n";
+            fout << "List of completed processes in order: " << "\r\n";
+
+            for(int i = 0; i < completedProcesses.size(); i++)
+            {
+                fout << completedProcesses.at(i) << "\r\n";
+            }
+
+            f.close();
+        }
+
         currentlyRunning = false;
         systemTime = 0;
+        totalTurnaroundTime = 0;
     }
 
     if(currentlyRunning)
     {
+        f.open(QIODevice::WriteOnly | QIODevice::Append);
         qDebug() << "Timeout";
         sortQueue(currentType);
 
@@ -35,7 +59,16 @@ void ProcessScheduler::processTimeout()
             {
                 if(runningProcess->getTimeRemaining() <= 0)
                 {
-                    qDebug() << "Switching processes...";
+                    if(currentType == SJF)
+                    {
+                        totalTurnaroundTime += systemTime;
+                    }
+                    else
+                    {
+                        totalTurnaroundTime += systemTime - runningProcess->getTimeOfArrival();
+                    }
+
+                    fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
                     Globals().globalPCBControl.freePCB(runningProcess);
@@ -45,14 +78,16 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    qDebug() << "New process: " << runningProcess;
+                    fout << "New process: " << runningProcess << "\r\n";
                 }
             }
             else if(currentType == STCF)
             {
                 if(runningProcess->getTimeRemaining() <= 0)
                 {
-                    qDebug() << "Switching processes...";
+                    totalTurnaroundTime += systemTime - runningProcess->getTimeOfArrival();
+
+                    fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
                     Globals().globalPCBControl.freePCB(runningProcess);
@@ -62,7 +97,7 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    qDebug() << "New process: " << runningProcess;
+                    fout << "New process: " << runningProcess << "\r\n";
                 }
                 else if(Globals().globalPCBControl.readyQueueSize() > 0)
                 {
@@ -80,7 +115,9 @@ void ProcessScheduler::processTimeout()
             {
                 if(runningProcess->getTimeRemaining() <= 0)
                 {
-                    qDebug() << "Switching processes...";
+                    totalTurnaroundTime += systemTime - runningProcess->getTimeOfArrival();
+
+                    fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
                     Globals().globalPCBControl.freePCB(runningProcess);
@@ -90,7 +127,7 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    qDebug() << "New process: " << runningProcess;
+                    fout << "New process: " << runningProcess << "\r\n";
                 }
                 else if(Globals().globalPCBControl.readyQueueSize() > 0)
                 {
@@ -108,8 +145,10 @@ void ProcessScheduler::processTimeout()
             {
                 if(runningProcess->getTimeRemaining() <= 0)
                 {
+                    totalTurnaroundTime += systemTime - runningProcess->getTimeOfArrival();
+
                     currentTimeQuantum = 0;
-                    qDebug() << "Switching processes...";
+                    fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
                     Globals().globalPCBControl.freePCB(runningProcess);
@@ -119,7 +158,7 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    qDebug() << "New process: " << runningProcess;
+                    fout << "New process: " << runningProcess << "\r\n";
                 }
                 else if(currentTimeQuantum == timeQuantumSize)
                 {
@@ -143,8 +182,9 @@ void ProcessScheduler::processTimeout()
             {
                 if(runningProcess->getTimeRemaining() <= 0)
                 {
+                    totalTurnaroundTime += systemTime - runningProcess->getTimeOfArrival();
                     currentTimeQuantum = 0;
-                    qDebug() << "Switching processes...";
+                    fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
                     Globals().globalPCBControl.freePCB(runningProcess);
@@ -154,7 +194,7 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    qDebug() << "New process: " << runningProcess;
+                    fout << "New process: " << runningProcess << "\r\n";
                 }
                 else if(currentTimeQuantum == timeQuantumSize)
                 {
@@ -174,19 +214,24 @@ void ProcessScheduler::processTimeout()
                     currentTimeQuantum++;
                 }
             }
+            else if(currentType == LS)
+            {
+                
+            }
         }
         else
         {
             if(Globals().globalPCBControl.readyQueueSize() > 0)
             {
                 runningProcess = Globals().globalPCBControl.atReadyQueue(0);
-                qDebug() << "Running process(new): " << runningProcess;
+                fout << "Running process(new): " << runningProcess->getName() << "\r\n";
                 Globals().globalPCBControl.removePCB(runningProcess);
                 qDebug() << runningProcess->getName();
             }
         }
 
         systemTime++;
+        f.close();
     }
 }
 
@@ -342,7 +387,6 @@ void ProcessScheduler::setupIncomplete()
             i--;
         }
     }
-
 
     //Move any newly arrived processes to the ready queue
     for(int i = 0; i < Globals().globalPCBControl.blockedQueueSize(); i++)

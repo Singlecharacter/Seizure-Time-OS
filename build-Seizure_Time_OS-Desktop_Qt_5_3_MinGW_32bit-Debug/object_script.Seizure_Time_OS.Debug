@@ -14,6 +14,7 @@ INPUT(
 ./debug\multipagedialog.o
 ./debug\processschedulerdialog.o
 ./debug\processscheduler.o
+./debug\memorymanager.o
 ./debug\moc_seizuretimecore.o
 ./debug\moc_mainmenu.o
 ./debug\moc_quitconfirmdialog.o

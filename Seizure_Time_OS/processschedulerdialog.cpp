@@ -59,60 +59,77 @@ void ProcessSchedulerDialog::loadClicked()
 
 void ProcessSchedulerDialog::SJFClicked()
 {
+    loadClicked();
     scheduler.sortQueue(SJF);
     scheduler.currentType = SJF;
     printReady();
+    scheduler.f.setFileName(Globals().mainDir+"/SJF.txt");
 }
 
 void ProcessSchedulerDialog::FIFOClicked()
 {
+    loadClicked();
     scheduler.sortQueue(FIFO);
     scheduler.currentType = FIFO;
     printReady();
+    scheduler.f.setFileName(Globals().mainDir+"/FIFO.txt");
 }
 
 void ProcessSchedulerDialog::STCFClicked()
 {
+    loadClicked();
     scheduler.sortQueue(STCF);
     scheduler.currentType = STCF;
     printReady();
+    scheduler.f.setFileName(Globals().mainDir+"/STCF.txt");
 }
 
 void ProcessSchedulerDialog::FPPSClicked()
 {
+    loadClicked();
     scheduler.sortQueue(FPPS);
     scheduler.currentType = FPPS;
     printReady();
+    scheduler.f.setFileName(Globals().mainDir+"/FPPS.txt");
 }
 
 void ProcessSchedulerDialog::RRClicked()
 {
+    loadClicked();
     scheduler.sortQueue(RR);
     scheduler.currentType = RR;
     scheduler.timeQuantumSize = ui->quantumBox->value();
     printReady();
+    scheduler.f.setFileName(Globals().mainDir+"/RR.txt");
 }
 
 void ProcessSchedulerDialog::MLFQClicked()
 {
+    loadClicked();
     scheduler.sortQueue(MLFQ);
     scheduler.currentType = MLFQ;
     scheduler.timeQuantumSize = ui->quantumBox->value();
     printReady();
+    scheduler.f.setFileName(Globals().mainDir+"/MLFQ.txt");
 }
 
 void ProcessSchedulerDialog::LSClicked()
 {
+    loadClicked();
     scheduler.sortQueue(LS);
     scheduler.currentType = LS;
     scheduler.timeQuantumSize = ui->quantumBox->value();
     printReady();
+    scheduler.f.setFileName(Globals().mainDir+"/LS.txt");
 }
 
 void ProcessSchedulerDialog::startClicked()
 {
+    loadClicked();
     scheduler.currentlyRunning = true;
-    qDebug() << scheduler.currentlyRunning;
+    scheduler.f.open(QIODevice::WriteOnly);
+    scheduler.fout.setDevice(&scheduler.f);
+    scheduler.f.close();
 }
 
 void ProcessSchedulerDialog::printReady()

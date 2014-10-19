@@ -50,7 +50,6 @@ private:
     PCBManagerDialog *PCBDialog;
     ProcessSchedulerDialog *processDialog;
 
-    QString mainDir;
     QStringList helpLibrary;
 
     //Pointers to ui elements

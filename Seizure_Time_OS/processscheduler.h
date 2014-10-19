@@ -6,8 +6,11 @@
 #include <QString>
 #include <QStringList>
 #include <QDebug>
+#include <QFile>
+#include <QTextStream>
 #include "pcb.h"
 #include "globals.h"
+#include "memorymanager.h"
 
 enum ScheduleType
 {
@@ -38,6 +41,9 @@ public:
     int systemTime;
     int timeQuantumSize;
     int currentTimeQuantum;
+    int totalTurnaroundTime;
+    QFile f;
+    QTextStream fout;
 
     QString getRunningName();
 
@@ -48,6 +54,7 @@ private:
     PCB *runningProcess;
     QTimer *processTimer;
 
+    MemoryManager manager;
 };
 
 #endif // PROCESSSCHEDULER_H

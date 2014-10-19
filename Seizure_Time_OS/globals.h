@@ -2,6 +2,7 @@
 #define GLOBALS_H
 
 #include <QDate>
+#include <QString>
 
 #include "pcbcontrol.h"
 
@@ -12,6 +13,7 @@ public:
     Globals();
     ~Globals();
 
+    static QString mainDir;
     static PCBControl globalPCBControl;
     static QDate systemDate;
 };

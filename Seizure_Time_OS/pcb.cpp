@@ -1,7 +1,7 @@
 #include "pcb.h"
 
 PCB::PCB() : name(""), myClass(Application), priority(0), runState(Ready), suspendState(NotSuspended), requiredMemory(0),
-             timeRemaining(0), timeOfArrival(0), CPUPercentage(0)
+             timeRemaining(0), timeOfArrival(0), CPUPercentage(0), memAllocated(false)
 {
 
 }

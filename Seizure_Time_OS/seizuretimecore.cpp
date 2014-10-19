@@ -7,12 +7,14 @@ SeizureTimeCore::SeizureTimeCore(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //Create and show main menu
-    menu = new MainMenu();
-    menu->show();
 
     //Initialize globals
     Globals().systemDate = QDate().currentDate();
+    Globals().mainDir = QDir().homePath() + "/Seizure_Time_OS";
+
+    //Create and show main menu
+    menu = new MainMenu();
+    menu->show();
 }
 
 SeizureTimeCore::~SeizureTimeCore()

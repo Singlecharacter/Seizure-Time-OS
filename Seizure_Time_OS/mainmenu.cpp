@@ -15,9 +15,8 @@ MainMenu::MainMenu(QWidget *parent) :
     PCBDialog = NULL;
     processDialog = NULL;
 
-    mainDir = QDir().homePath() + "/Seizure_Time_OS";
     QDir temp;
-    temp.mkdir(mainDir);
+    temp.mkdir(Globals().mainDir);
 
     //Setup help library
     helpLibrary.clear();
@@ -81,7 +80,7 @@ void MainMenu::quitClicked()
 void MainMenu::fileClicked()
 {
     delete dirDialog;
-    dirDialog = new DirectoryListDialog(this, mainDir);
+    dirDialog = new DirectoryListDialog(this, Globals().mainDir);
 }
 
 void MainMenu::dateClicked()

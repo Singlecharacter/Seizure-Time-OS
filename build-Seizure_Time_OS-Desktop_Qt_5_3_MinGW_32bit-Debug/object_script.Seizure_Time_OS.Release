@@ -14,6 +14,7 @@ INPUT(
 ./release\multipagedialog.o
 ./release\processschedulerdialog.o
 ./release\processscheduler.o
+./release\memorymanager.o
 ./release\moc_seizuretimecore.o
 ./release\moc_mainmenu.o
 ./release\moc_quitconfirmdialog.o
