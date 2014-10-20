@@ -25,7 +25,7 @@ void ProcessScheduler::processTimeout()
             float averageTurnaroundTime = totalTurnaroundTime/completedProcesses.size();
 
             fout << "\r\n";
-            fout << "Total time to completion: " << systemTime << "\r\n";
+            fout << "Total time to completion: " << systemTime - 1 << "\r\n";
             fout << "Average turnaround time: " << averageTurnaroundTime << "\r\n";
             fout << "List of completed processes in order: " << "\r\n";
 
@@ -71,6 +71,7 @@ void ProcessScheduler::processTimeout()
                     fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
+                    manager.removeProcess(runningProcess);
                     Globals().globalPCBControl.freePCB(runningProcess);
                     runningProcess = NULL;
                     if(Globals().globalPCBControl.readyQueueSize() > 0)
@@ -78,7 +79,20 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    fout << "New process: " << runningProcess << "\r\n";
+
+                    if(runningProcess != NULL)
+                    {
+                        fout << "New process: " << runningProcess->getName() << "\r\n";
+                    }
+                    else
+                    {
+                        fout << "New Process: " << "NONE" << "\r\n";
+                    }
+
+                    fout << "New memory chart:\r\n";
+                    f.close();
+                    manager.logTable();
+                    f.open(QIODevice::WriteOnly | QIODevice::Append);
                 }
             }
             else if(currentType == STCF)
@@ -90,6 +104,7 @@ void ProcessScheduler::processTimeout()
                     fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
+                    manager.removeProcess(runningProcess);
                     Globals().globalPCBControl.freePCB(runningProcess);
                     runningProcess = NULL;
                     if(Globals().globalPCBControl.readyQueueSize() > 0)
@@ -97,17 +112,40 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    fout << "New process: " << runningProcess << "\r\n";
+
+                    if(runningProcess != NULL)
+                    {
+                        fout << "New process: " << runningProcess->getName() << "\r\n";
+                    }
+                    else
+                    {
+                        fout << "New Process: " << "NONE" << "\r\n";
+                    }
+
+                    fout << "New memory chart:\r\n";
+                    f.close();
+                    manager.logTable();
+                    f.open(QIODevice::WriteOnly | QIODevice::Append);
                 }
                 else if(Globals().globalPCBControl.readyQueueSize() > 0)
                 {
                     if(Globals().globalPCBControl.atReadyQueue(0)->getTimeRemaining() < runningProcess->getTimeRemaining())
                     {
+                        fout << "Switching processes...\r\n";
                         PCB *temp = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(temp);
                         runningProcess->setRunState(Ready);
                         Globals().globalPCBControl.insertPCB(runningProcess);
                         runningProcess = temp;
+
+                        if(runningProcess != NULL)
+                        {
+                            fout << "New process: " << runningProcess->getName() << "\r\n";
+                        }
+                        else
+                        {
+                            fout << "New Process: " << "NONE" << "\r\n";
+                        }
                     }
                 }
             }
@@ -120,6 +158,7 @@ void ProcessScheduler::processTimeout()
                     fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
+                    manager.removeProcess(runningProcess);
                     Globals().globalPCBControl.freePCB(runningProcess);
                     runningProcess = NULL;
                     if(Globals().globalPCBControl.readyQueueSize() > 0)
@@ -127,17 +166,40 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    fout << "New process: " << runningProcess << "\r\n";
+
+                    if(runningProcess != NULL)
+                    {
+                        fout << "New process: " << runningProcess->getName() << "\r\n";
+                    }
+                    else
+                    {
+                        fout << "New Process: " << "NONE" << "\r\n";
+                    }
+
+                    fout << "New memory chart:\r\n";
+                    f.close();
+                    manager.logTable();
+                    f.open(QIODevice::WriteOnly | QIODevice::Append);
                 }
                 else if(Globals().globalPCBControl.readyQueueSize() > 0)
                 {
                     if(Globals().globalPCBControl.atReadyQueue(0)->getPriority() > runningProcess->getPriority())
                     {
+                        fout << "Switching processes...\r\n";
                         PCB *temp = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(temp);
                         runningProcess->setRunState(Ready);
                         Globals().globalPCBControl.insertPCB(runningProcess);
                         runningProcess = temp;
+
+                        if(runningProcess != NULL)
+                        {
+                            fout << "New process: " << runningProcess->getName() << "\r\n";
+                        }
+                        else
+                        {
+                            fout << "New Process: " << "NONE" << "\r\n";
+                        }
                     }
                 }
             }
@@ -151,6 +213,7 @@ void ProcessScheduler::processTimeout()
                     fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
+                    manager.removeProcess(runningProcess);
                     Globals().globalPCBControl.freePCB(runningProcess);
                     runningProcess = NULL;
                     if(Globals().globalPCBControl.readyQueueSize() > 0)
@@ -158,12 +221,26 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    fout << "New process: " << runningProcess << "\r\n";
+
+                    if(runningProcess != NULL)
+                    {
+                        fout << "New process: " << runningProcess->getName() << "\r\n";
+                    }
+                    else
+                    {
+                        fout << "New Process: " << "NONE" << "\r\n";
+                    }
+
+                    fout << "New memory chart:\r\n";
+                    f.close();
+                    manager.logTable();
+                    f.open(QIODevice::WriteOnly | QIODevice::Append);
                 }
                 else if(currentTimeQuantum == timeQuantumSize)
                 {
                     currentTimeQuantum = 0;
                     PCB *temp = runningProcess;
+                    manager.removeProcess(runningProcess);
                     runningProcess = NULL;
                     temp->setRunState(Blocked);
                     Globals().globalPCBControl.insertPCB(temp);
@@ -171,6 +248,15 @@ void ProcessScheduler::processTimeout()
                     {
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
+                    }
+
+                    if(runningProcess != NULL)
+                    {
+                        fout << "New process: " << runningProcess->getName() << "\r\n";
+                    }
+                    else
+                    {
+                        fout << "New Process: " << "NONE" << "\r\n";
                     }
                 }
                 else
@@ -187,6 +273,7 @@ void ProcessScheduler::processTimeout()
                     fout << "Switching processes..." << "\r\n";
                     completedProcesses.push_back(runningProcess->getName());
                     sortQueue(currentType);
+                    manager.removeProcess(runningProcess);
                     Globals().globalPCBControl.freePCB(runningProcess);
                     runningProcess = NULL;
                     if(Globals().globalPCBControl.readyQueueSize() > 0)
@@ -194,10 +281,24 @@ void ProcessScheduler::processTimeout()
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
                     }
-                    fout << "New process: " << runningProcess << "\r\n";
+
+                    if(runningProcess != NULL)
+                    {
+                        fout << "New process: " << runningProcess->getName() << "\r\n";
+                    }
+                    else
+                    {
+                        fout << "New Process: " << "NONE" << "\r\n";
+                    }
+
+                    fout << "New memory chart:\r\n";
+                    f.close();
+                    manager.logTable();
+                    f.open(QIODevice::WriteOnly | QIODevice::Append);
                 }
                 else if(currentTimeQuantum == timeQuantumSize)
                 {
+                    fout << "Switching processes...\r\n";
                     currentTimeQuantum = 0;
                     PCB *temp = runningProcess;
                     runningProcess = NULL;
@@ -207,6 +308,15 @@ void ProcessScheduler::processTimeout()
                     {
                         runningProcess = Globals().globalPCBControl.atReadyQueue(0);
                         Globals().globalPCBControl.removePCB(runningProcess);
+                    }
+
+                    if(runningProcess != NULL)
+                    {
+                        fout << "New process: " << runningProcess->getName() << "\r\n";
+                    }
+                    else
+                    {
+                        fout << "New Process: " << "NONE" << "\r\n";
                     }
                 }
                 else
@@ -227,6 +337,17 @@ void ProcessScheduler::processTimeout()
                 fout << "Running process(new): " << runningProcess->getName() << "\r\n";
                 Globals().globalPCBControl.removePCB(runningProcess);
                 qDebug() << runningProcess->getName();
+
+                f.close();
+
+                manager.addProcess(runningProcess);
+
+                f.open(QIODevice::WriteOnly | QIODevice::Append);
+
+                fout << "New memory chart:\r\n";
+                f.close();
+                manager.logTable();
+                f.open(QIODevice::WriteOnly | QIODevice::Append);
             }
         }
 
@@ -358,6 +479,45 @@ void ProcessScheduler::sortQueue(ScheduleType type)
     {
         qDebug() << "Sorting for LS.";
         setupIncomplete();
+    }
+
+    //Try inserting any blocked processes that have arrived into the memory manager
+    //If successful, move them to the ready queue
+    if(currentType != MLFQ && currentType != RR) //Ensure that the current scheduler doesn't block processes for other reasons
+    {
+        for(int i = 0; i < Globals().globalPCBControl.blockedQueueSize(); i++)
+        {
+            if(Globals().globalPCBControl.atBlockedQueue(i)->getTimeOfArrival() <= systemTime)
+            {
+                if(!manager.findProcess(Globals().globalPCBControl.atBlockedQueue(i)))
+                {
+                    if(manager.addProcess(Globals().globalPCBControl.atBlockedQueue(i)))
+                    {
+                        PCB *temp = Globals().globalPCBControl.atBlockedQueue(i);
+                        Globals().globalPCBControl.removePCB(temp);
+                        temp->setRunState(Ready);
+                        Globals().globalPCBControl.insertPCB(temp);
+                        i--;
+                    }
+                }
+            }
+        }
+    }
+
+    //Insert any uninserted processes into the memory manager, or move them into the blocked queue if they can't be inserted
+    for(int i = 0; i < Globals().globalPCBControl.readyQueueSize(); i++)
+    {
+        if(!manager.findProcess(Globals().globalPCBControl.atReadyQueue(i)))
+        {
+            if(!manager.addProcess(Globals().globalPCBControl.atReadyQueue(i)))
+            {
+                PCB *temp = Globals().globalPCBControl.atReadyQueue(i);
+                Globals().globalPCBControl.removePCB(temp);
+                temp->setRunState(Blocked);
+                Globals().globalPCBControl.insertPCB(temp);
+                i--;
+            }
+        }
     }
 }
 

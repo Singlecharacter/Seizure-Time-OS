@@ -6,6 +6,16 @@
 
 #include <vector>
 #include <QString>
+#include <QFile>
+#include <QTextStream>
+
+enum MemType
+{
+    FIRST_FIT,
+    NEXT_FIT,
+    BEST_FIT,
+    WORST_FIT
+};
 
 struct memorySlot
 {
@@ -23,14 +33,28 @@ public:
 
     bool addProcess(PCB *process);
     bool removeProcess(PCB *process);
+    bool findProcess(PCB *process);
 
-    std::vector<memorySlot> memoryTable;
+    void logTable();
+
+    void clearTable();
+
+    MemType mode;
+
+    std::vector<memorySlot*> memoryTable;
+
+    QString fname;
 
 private:
 
     void compact();
     void coalesce();
     bool insertProcess(PCB *process);
+
+    //For next fit
+    int prevIndex;
+
+    int defaultSize;
 };
 
 #endif // MEMORYMANAGER_H

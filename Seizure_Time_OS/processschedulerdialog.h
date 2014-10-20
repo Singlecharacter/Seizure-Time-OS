@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QTimer>
 #include <QLabel>
+#include <QComboBox>
 
 #include "globals.h"
 #include "processscheduler.h"

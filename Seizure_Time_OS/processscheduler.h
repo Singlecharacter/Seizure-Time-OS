@@ -44,6 +44,7 @@ public:
     int totalTurnaroundTime;
     QFile f;
     QTextStream fout;
+    MemoryManager manager;
 
     QString getRunningName();
 
@@ -53,8 +54,6 @@ private:
 
     PCB *runningProcess;
     QTimer *processTimer;
-
-    MemoryManager manager;
 };
 
 #endif // PROCESSSCHEDULER_H

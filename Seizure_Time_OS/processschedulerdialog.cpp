@@ -16,6 +16,7 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     QRadioButton *MLFQButton = ui->MLFQButton;
     QRadioButton *LSButton = ui->LSButton;
     QPushButton *loadButton = ui->loadButton;
+    QComboBox *memComboBox = ui->memComboBox;
     filenameEdit = ui->filenameEdit;
     readyQueueDisplay = ui->readyQueueDisplay;
     completedDisplay = ui->completedDisplay;
@@ -27,6 +28,12 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     processTimer->setSingleShot(false);
     processTimer->start(1);
 
+    memComboBox->addItem("First fit");
+    memComboBox->addItem("Next fit");
+    memComboBox->addItem("Best fit");
+    memComboBox->addItem("Worst fit");
+    memComboBox->adjustSize();
+
     connect(processTimer,SIGNAL(timeout()),this,SLOT(processTimeout()));
     connect(loadButton,SIGNAL(clicked()),this,SLOT(loadClicked()));
     connect(SJFButton,SIGNAL(clicked()),this,SLOT(SJFClicked()));
@@ -36,6 +43,7 @@ ProcessSchedulerDialog::ProcessSchedulerDialog(QWidget *parent) :
     connect(RRButton,SIGNAL(clicked()),this,SLOT(RRClicked()));
     connect(MLFQButton,SIGNAL(clicked()),this,SLOT(MLFQClicked()));
     connect(startButton,SIGNAL(clicked()),this,SLOT(startClicked()));
+    connect(LSButton,SIGNAL(clicked()),this,SLOT(LSClicked()));
 
     show();
 }
@@ -64,6 +72,8 @@ void ProcessSchedulerDialog::SJFClicked()
     scheduler.currentType = SJF;
     printReady();
     scheduler.f.setFileName(Globals().mainDir+"/SJF.txt");
+    scheduler.manager.fname = Globals().mainDir+"/SJF.txt";
+    scheduler.manager.clearTable();
 }
 
 void ProcessSchedulerDialog::FIFOClicked()
@@ -73,6 +83,8 @@ void ProcessSchedulerDialog::FIFOClicked()
     scheduler.currentType = FIFO;
     printReady();
     scheduler.f.setFileName(Globals().mainDir+"/FIFO.txt");
+    scheduler.manager.fname = Globals().mainDir+"/FIFO.txt";
+    scheduler.manager.clearTable();
 }
 
 void ProcessSchedulerDialog::STCFClicked()
@@ -82,6 +94,8 @@ void ProcessSchedulerDialog::STCFClicked()
     scheduler.currentType = STCF;
     printReady();
     scheduler.f.setFileName(Globals().mainDir+"/STCF.txt");
+    scheduler.manager.fname = Globals().mainDir+"/STCF.txt";
+    scheduler.manager.clearTable();
 }
 
 void ProcessSchedulerDialog::FPPSClicked()
@@ -91,6 +105,8 @@ void ProcessSchedulerDialog::FPPSClicked()
     scheduler.currentType = FPPS;
     printReady();
     scheduler.f.setFileName(Globals().mainDir+"/FPPS.txt");
+    scheduler.manager.fname = Globals().mainDir+"/FPPS.txt";
+    scheduler.manager.clearTable();
 }
 
 void ProcessSchedulerDialog::RRClicked()
@@ -101,6 +117,8 @@ void ProcessSchedulerDialog::RRClicked()
     scheduler.timeQuantumSize = ui->quantumBox->value();
     printReady();
     scheduler.f.setFileName(Globals().mainDir+"/RR.txt");
+    scheduler.manager.fname = Globals().mainDir+"/RR.txt";
+    scheduler.manager.clearTable();
 }
 
 void ProcessSchedulerDialog::MLFQClicked()
@@ -111,6 +129,8 @@ void ProcessSchedulerDialog::MLFQClicked()
     scheduler.timeQuantumSize = ui->quantumBox->value();
     printReady();
     scheduler.f.setFileName(Globals().mainDir+"/MLFQ.txt");
+    scheduler.manager.fname = Globals().mainDir+"/MLFQ.txt";
+    scheduler.manager.clearTable();
 }
 
 void ProcessSchedulerDialog::LSClicked()
@@ -121,6 +141,8 @@ void ProcessSchedulerDialog::LSClicked()
     scheduler.timeQuantumSize = ui->quantumBox->value();
     printReady();
     scheduler.f.setFileName(Globals().mainDir+"/LS.txt");
+    scheduler.manager.fname = Globals().mainDir+"/LS.txt";
+    scheduler.manager.clearTable();
 }
 
 void ProcessSchedulerDialog::startClicked()
@@ -130,6 +152,24 @@ void ProcessSchedulerDialog::startClicked()
     scheduler.f.open(QIODevice::WriteOnly);
     scheduler.fout.setDevice(&scheduler.f);
     scheduler.f.close();
+    scheduler.manager.clearTable();
+
+    if(ui->memComboBox->currentText() == "First fit")
+    {
+        scheduler.manager.mode = FIRST_FIT;
+    }
+    else if(ui->memComboBox->currentText() == "Next fit")
+    {
+
+    }
+    else if(ui->memComboBox->currentText() == "Best fit")
+    {
+
+    }
+    else if(ui->memComboBox->currentText() == "Worst fit")
+    {
+
+    }
 }
 
 void ProcessSchedulerDialog::printReady()

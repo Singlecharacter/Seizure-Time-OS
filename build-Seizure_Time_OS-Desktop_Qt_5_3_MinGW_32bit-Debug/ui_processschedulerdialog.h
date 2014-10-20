@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'processschedulerdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.0
+** Created by: Qt User Interface Compiler version 5.3.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -45,12 +46,14 @@ public:
     QSpinBox *quantumBox;
     QRadioButton *MLFQButton;
     QRadioButton *LSButton;
+    QComboBox *memComboBox;
+    QLabel *label_5;
 
     void setupUi(QDialog *ProcessSchedulerDialog)
     {
         if (ProcessSchedulerDialog->objectName().isEmpty())
             ProcessSchedulerDialog->setObjectName(QStringLiteral("ProcessSchedulerDialog"));
-        ProcessSchedulerDialog->resize(400, 334);
+        ProcessSchedulerDialog->resize(371, 334);
         filenameEdit = new QLineEdit(ProcessSchedulerDialog);
         filenameEdit->setObjectName(QStringLiteral("filenameEdit"));
         filenameEdit->setGeometry(QRect(80, 30, 113, 20));
@@ -98,7 +101,7 @@ public:
         label_4->setGeometry(QRect(30, 60, 73, 13));
         quantumBox = new QSpinBox(ProcessSchedulerDialog);
         quantumBox->setObjectName(QStringLiteral("quantumBox"));
-        quantumBox->setGeometry(QRect(110, 60, 42, 22));
+        quantumBox->setGeometry(QRect(110, 60, 51, 22));
         quantumBox->setMinimum(1);
         quantumBox->setMaximum(1000);
         MLFQButton = new QRadioButton(ProcessSchedulerDialog);
@@ -107,6 +110,12 @@ public:
         LSButton = new QRadioButton(ProcessSchedulerDialog);
         LSButton->setObjectName(QStringLiteral("LSButton"));
         LSButton->setGeometry(QRect(150, 260, 82, 17));
+        memComboBox = new QComboBox(ProcessSchedulerDialog);
+        memComboBox->setObjectName(QStringLiteral("memComboBox"));
+        memComboBox->setGeometry(QRect(280, 70, 69, 22));
+        label_5 = new QLabel(ProcessSchedulerDialog);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(200, 70, 71, 13));
 
         retranslateUi(ProcessSchedulerDialog);
 
@@ -130,6 +139,7 @@ public:
         label_4->setText(QApplication::translate("ProcessSchedulerDialog", "Time Quantum:", 0));
         MLFQButton->setText(QApplication::translate("ProcessSchedulerDialog", "MLFQ", 0));
         LSButton->setText(QApplication::translate("ProcessSchedulerDialog", "LS", 0));
+        label_5->setText(QApplication::translate("ProcessSchedulerDialog", "Memory mode:", 0));
     } // retranslateUi
 
 };
